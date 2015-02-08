@@ -1,7 +1,6 @@
 package com.ocddevelopers.androidwearables.handheldnotifications;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Intent;
@@ -12,6 +11,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
+import android.support.v7.app.ActionBarActivity;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
@@ -21,13 +21,18 @@ import android.widget.RemoteViews;
 /**
  * Demonstrates how to create different kinds of notifications for Android devices.
  */
-public class MainActivity extends Activity {
-    public static final int NOTIFICATION_ID = 1; // must be unique
+public class MainActivity extends ActionBarActivity {
+    public static final int NOTIFICATION_ID = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // disable media style example if running less than API 21
+        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            findViewById(R.id.media_style).setEnabled(false);
+        }
     }
 
     public void onStandardNotificationButtonClick(View view) {
@@ -35,8 +40,8 @@ public class MainActivity extends Activity {
 
         Notification standardNotification = new NotificationCompat.Builder(this)
                 .setContentTitle("On time ATL–SFO")
-                .setContentText("DL1234 departing 4:18pm")
-                .setSmallIcon(R.drawable.ic_launcher)
+                .setContentText("DL1234 departing 6:18pm")
+                .setSmallIcon(R.drawable.ic_stat_notify)
                 .setContentIntent(activityPendingIntent)
                 .build();
 
@@ -55,13 +60,103 @@ public class MainActivity extends Activity {
 
         Notification updatedNotification = new NotificationCompat.Builder(this)
                 .setContentTitle("Delayed ATL–SFO")
-                .setContentText("DL1234 now departing 5:05pm")
-                .setSmallIcon(R.drawable.ic_launcher)
+                .setContentText("DL1234 now departing 7:05pm")
+                .setSmallIcon(R.drawable.ic_stat_notify)
                 .setContentIntent(activityPendingIntent)
                 .build();
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
         notificationManager.notify(NOTIFICATION_ID, updatedNotification);
+    }
+
+    public void onPublicNotificationClick(View view) {
+        PendingIntent activityPendingIntent = getActivityPendingIntent();
+
+        Notification notification = new NotificationCompat.Builder(this)
+                .setContentTitle("Public Notification")
+                .setContentText("Public content here")
+                .setSmallIcon(R.drawable.ic_stat_notify)
+                .setContentIntent(activityPendingIntent)
+                .setCategory(Notification.CATEGORY_STATUS)
+                .setVisibility(Notification.VISIBILITY_PUBLIC)
+                .build();
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+        notificationManager.notify(NOTIFICATION_ID, notification);
+    }
+
+    public void onPrivateNotificationClick(View view){
+        PendingIntent activityPendingIntent = getActivityPendingIntent();
+
+        Notification notification = new NotificationCompat.Builder(this)
+                .setContentTitle("Private Notification")
+                .setContentText("Sensitive or private content here")
+                .setSmallIcon(R.drawable.ic_stat_notify)
+                .setContentIntent(activityPendingIntent)
+                .setCategory(Notification.CATEGORY_STATUS)
+                .setVisibility(Notification.VISIBILITY_PRIVATE)
+                .build();
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+        notificationManager.notify(NOTIFICATION_ID+1, notification);
+    }
+
+    public void onSecretNotificationClick(View view) {
+        PendingIntent activityPendingIntent = getActivityPendingIntent();
+
+        Notification notification = new NotificationCompat.Builder(this)
+                .setContentTitle("Secret Notification")
+                .setContentText("Sensitive content here")
+                .setSmallIcon(R.drawable.ic_stat_notify)
+                .setContentIntent(activityPendingIntent)
+                .setCategory(Notification.CATEGORY_STATUS)
+                .setVisibility(Notification.VISIBILITY_SECRET)
+                .build();
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+        notificationManager.notify(NOTIFICATION_ID+3, notification);
+    }
+
+    public void onPrivateNotificationWithPublicVersionClick(View view) {
+        PendingIntent activityPendingIntent = getActivityPendingIntent();
+
+        Notification publicNotification = new NotificationCompat.Builder(this)
+                .setContentTitle("Public Version Notification")
+                .setContentText("Redacted private content here")
+                .setSmallIcon(R.drawable.ic_stat_notify)
+                .setContentIntent(activityPendingIntent)
+                .setCategory(Notification.CATEGORY_STATUS)
+                .build();
+
+        Notification notification = new NotificationCompat.Builder(this)
+                .setContentTitle("Private Notification")
+                .setContentText("Sensitive or private content here")
+                .setSmallIcon(R.drawable.ic_stat_notify)
+                .setContentIntent(activityPendingIntent)
+                .setCategory(Notification.CATEGORY_STATUS)
+                .setVisibility(Notification.VISIBILITY_PRIVATE)
+                .setPublicVersion(publicNotification)
+                .build();
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+        notificationManager.notify(NOTIFICATION_ID+2, notification);
+    }
+
+    public void onHighPriorityNotificationClick(View view) {
+        PendingIntent activityPendingIntent = getActivityPendingIntent();
+
+        Notification notification = new NotificationCompat.Builder(this)
+                .setContentTitle("High priority")
+                .setContentText("Important message here")
+                .setSmallIcon(R.drawable.ic_stat_notify)
+                .setContentIntent(activityPendingIntent)
+                .setPriority(Notification.PRIORITY_HIGH)
+                .setDefaults(Notification.DEFAULT_ALL)
+                .setCategory(Notification.CATEGORY_STATUS)
+                .build();
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+        notificationManager.notify(NOTIFICATION_ID, notification);
     }
 
     public void onBigTextStyleButtonClick(View view) {
@@ -79,9 +174,10 @@ public class MainActivity extends Activity {
         Notification bigTextStyleNotification = new NotificationCompat.Builder(this)
                 .setContentTitle("All Hail BigTextStyle")
                 .setContentText(longText)
-                .setSmallIcon(R.drawable.ic_launcher)
-                .setStyle(bigTextStyle)
+                .setSmallIcon(R.drawable.ic_stat_notify)
                 .setContentIntent(activityPendingIntent)
+                .setCategory(Notification.CATEGORY_STATUS)
+                .setStyle(bigTextStyle)
                 .build();
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
@@ -102,8 +198,9 @@ public class MainActivity extends Activity {
         Notification bigPictureStyleNotification = new NotificationCompat.Builder(this)
                 .setContentTitle("Rando Fact")
                 .setContentText(contentText)
-                .setSmallIcon(R.drawable.ic_launcher)
+                .setSmallIcon(R.drawable.ic_stat_notify)
                 .setContentIntent(activityPendingIntent)
+                .setCategory(Notification.CATEGORY_STATUS)
                 .setStyle(bigPictureStyle)
                 .build();
 
@@ -125,8 +222,10 @@ public class MainActivity extends Activity {
         Notification inboxStyleNotification = new NotificationCompat.Builder(this)
                 .setContentTitle("5 messages received")
                 .setContentText("Alice, Bob, Eve, Trudy, Mallory")
-                .setSmallIcon(R.drawable.ic_launcher)
+                .setSmallIcon(R.drawable.ic_stat_notify)
+                .setPriority(Notification.PRIORITY_HIGH)
                 .setContentIntent(activityPendingIntent)
+                .setCategory(Notification.CATEGORY_MESSAGE)
                 .setStyle(inboxStyle)
                 .build();
 
@@ -151,28 +250,34 @@ public class MainActivity extends Activity {
 
         PendingIntent nextPendingIntent =
                 getMediaCommandPendingIntent(MediaCommandService.ACTION_NEXT);
-
-        // a notification's large icon must be scaled to the right size
-        Resources res = getResources();
-        int height = (int) res.getDimension(android.R.dimen.notification_large_icon_height);
-        int width = (int) res.getDimension(android.R.dimen.notification_large_icon_width);
-        Bitmap largeIcon = BitmapFactory.decodeResource(res, R.drawable.bg_defaul_album_art);
-        Bitmap scaledLargeIcon = Bitmap.createScaledBitmap(largeIcon, width, height, false);
+        Bitmap scaledLargeIcon = getAlbumArt();
 
         PendingIntent activityPendingIntent = getActivityPendingIntent();
 
         Notification actionNotification = new NotificationCompat.Builder(this)
                 .setContentTitle("Song Name")
                 .setContentText("Artist Name")
-                .setSmallIcon(R.drawable.ic_launcher)
+                .setSmallIcon(R.drawable.ic_stat_notify)
                 .setLargeIcon(scaledLargeIcon)
+                .setPriority(Notification.PRIORITY_HIGH)
                 .setContentIntent(activityPendingIntent)
+                .setCategory(Notification.CATEGORY_TRANSPORT)
+                .setShowWhen(false)
                 .addAction(android.R.drawable.ic_media_pause, "Pause", pausePendingIntent)
                 .addAction(android.R.drawable.ic_media_next, "Next", nextPendingIntent)
                 .build();
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
         notificationManager.notify(NOTIFICATION_ID, actionNotification);
+    }
+
+    private Bitmap getAlbumArt() {
+        // a notification's large icon must be scaled to the right size
+        Resources res = getResources();
+        int height = (int) res.getDimension(android.R.dimen.notification_large_icon_height);
+        int width = (int) res.getDimension(android.R.dimen.notification_large_icon_width);
+        Bitmap largeIcon = BitmapFactory.decodeResource(res, R.drawable.bg_default_album_art);
+        return Bitmap.createScaledBitmap(largeIcon, width, height, false);
     }
 
     private PendingIntent getMediaCommandPendingIntent(String commandName) {
@@ -197,7 +302,7 @@ public class MainActivity extends Activity {
         // custom notifications are available since API Level 11 (which is below our min SDK version)
         RemoteViews contentView = new RemoteViews(getApplicationContext().getPackageName(),
                 R.layout.statusbar);
-        contentView.setImageViewResource(R.id.albumart, R.drawable.bg_defaul_album_art);
+        contentView.setImageViewResource(R.id.albumart, R.drawable.bg_default_album_art);
         contentView.setTextViewText(R.id.trackname, "Song Name");
         contentView.setTextViewText(R.id.artistalbum, "Artist Name");
         contentView.setOnClickPendingIntent(R.id.playpause, pausePendingIntent);
@@ -209,8 +314,10 @@ public class MainActivity extends Activity {
         Notification customNotification = new NotificationCompat.Builder(this)
                 .setContentTitle("Song Name")
                 .setContentText("Artist Name")
-                .setSmallIcon(R.drawable.ic_launcher)
+                .setSmallIcon(R.drawable.ic_stat_notify)
+                .setPriority(Notification.PRIORITY_HIGH)
                 .setContentIntent(activityPendingIntent)
+                .setCategory(Notification.CATEGORY_TRANSPORT)
                 .setContent(contentView)
                 .setOngoing(true)
                 .build();
@@ -222,7 +329,7 @@ public class MainActivity extends Activity {
                     new RemoteViews(getApplicationContext().getPackageName(),
                             R.layout.statusbar_expanded);
             expandedNotificationView.setImageViewResource(R.id.albumart,
-                    R.drawable.bg_defaul_album_art);
+                    R.drawable.bg_default_album_art);
             expandedNotificationView.setTextViewText(R.id.trackname, "Song Name");
             expandedNotificationView.setTextViewText(R.id.artist, "Artist Name");
             expandedNotificationView.setTextViewText(R.id.album, "Album Name");
@@ -240,6 +347,11 @@ public class MainActivity extends Activity {
 
     private boolean isJellybeanOrAbove() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN;
+    }
+
+    public void onMediaStyleNotificationButtonClick(View view) {
+        Intent mediaIntent = new Intent(this, MediaStyleService.class);
+        startService(mediaIntent);
     }
 
 }
