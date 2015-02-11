@@ -40,8 +40,11 @@ public class MainActivity extends ActionBarActivity {
         Notification notification = new NotificationCompat.Builder(this)
                 .setContentTitle("Preppy Rabbit")
                 .setContentText("I like carrots")
-                .setSmallIcon(R.drawable.ic_launcher)
+                .setSmallIcon(R.drawable.ic_stat_notify)
                 .setContentIntent(conversationPendingIntent)
+                .setCategory(Notification.CATEGORY_MESSAGE)
+                .setPriority(Notification.PRIORITY_HIGH)
+                .setDefaults(Notification.DEFAULT_ALL)
                 .build();
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
@@ -72,9 +75,12 @@ public class MainActivity extends ActionBarActivity {
         PendingIntent bothActionFeedbackPendingIntent =
                 getActionFeedbackPendingIntent("You invoked the action that appears on both devices", 2);
 
-        NotificationCompat.Action handheldOnlyAction = new NotificationCompat.Action(android.R.drawable.ic_media_previous, "Handheld", handheldActionFeedbackPendingIntent);
-        NotificationCompat.Action wearableOnlyAction = new NotificationCompat.Action(android.R.drawable.ic_media_next, "Wearable", wearableActionFeedbackPendingIntent);
-        NotificationCompat.Action action = new NotificationCompat.Action(android.R.drawable.ic_media_pause, "Both", bothActionFeedbackPendingIntent);
+        NotificationCompat.Action handheldOnlyAction = new NotificationCompat.Action(
+                android.R.drawable.ic_media_previous, "Handheld", handheldActionFeedbackPendingIntent);
+        NotificationCompat.Action wearableOnlyAction = new NotificationCompat.Action(
+                android.R.drawable.ic_media_next, "Wearable", wearableActionFeedbackPendingIntent);
+        NotificationCompat.Action action = new NotificationCompat.Action(
+                android.R.drawable.ic_media_pause, "Both", bothActionFeedbackPendingIntent);
 
         NotificationCompat.WearableExtender wearableExtender = new NotificationCompat.WearableExtender()
                 .addAction(wearableOnlyAction)
@@ -85,8 +91,9 @@ public class MainActivity extends ActionBarActivity {
         Notification notification = new NotificationCompat.Builder(this)
                 .setContentTitle("Title")
                 .setContentText("Text")
-                .setSmallIcon(R.drawable.ic_launcher)
+                .setSmallIcon(R.drawable.ic_stat_notify)
                 .setContentIntent(mainActivityPendingIntent)
+                .setCategory(Notification.CATEGORY_STATUS)
                 .addAction(action)
                 .extend(wearableExtender)
                 .addAction(handheldOnlyAction)
@@ -121,6 +128,7 @@ public class MainActivity extends ActionBarActivity {
                 .bigText(message);
 
         Notification messageHistoryPage = new NotificationCompat.Builder(this)
+                .setContentText(message) // needed for Glass
                 .setStyle(bigTextStyle)
                 .build();
 
@@ -132,15 +140,17 @@ public class MainActivity extends ActionBarActivity {
         Notification notificationWithPages = new NotificationCompat.Builder(this)
                 .setContentTitle("Preppy Rabbit")
                 .setContentText("carrots*")
-                .setSmallIcon(R.drawable.ic_launcher)
-                .setLargeIcon(preppyAvatar)
-                .setPriority(Notification.PRIORITY_LOW)
-                .setDefaults(Notification.DEFAULT_ALL)
+                .setSmallIcon(R.drawable.ic_stat_notify)
                 .setContentIntent(getConversationPendingIntent("Preppy Rabbit", 0))
+                .setCategory(Notification.CATEGORY_MESSAGE)
+                .setLargeIcon(preppyAvatar)
+                .setPriority(Notification.PRIORITY_HIGH)
+                .setDefaults(Notification.DEFAULT_ALL)
                 .extend(wearableExtender)
                 .build();
 
-        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(MainActivity.this);
+        NotificationManagerCompat notificationManager =
+                NotificationManagerCompat.from(MainActivity.this);
         notificationManager.notify(NOTIFICATION_ID, notificationWithPages);
     }
 
@@ -191,13 +201,14 @@ public class MainActivity extends ActionBarActivity {
         Notification summaryNotification = new NotificationCompat.Builder(this)
                 .setContentTitle("2 messages received")
                 .setContentText("Preppy Rabbit, Serious Toad")
-                .setSmallIcon(R.drawable.ic_launcher)
+                .setSmallIcon(R.drawable.ic_stat_notify)
+                .setContentIntent(mainActivityPendingIntent)
+                .setCategory(Notification.CATEGORY_MESSAGE)
                 .setPriority(Notification.PRIORITY_HIGH)
                 .setDefaults(Notification.DEFAULT_ALL)
                 .extend(wearableExtender)
                 .setGroup(GROUP_KEY_MESSAGES)
                 .setGroupSummary(true)
-                .setContentIntent(mainActivityPendingIntent)
                 .setStyle(inboxStyle)
                 .build();
 
@@ -236,7 +247,7 @@ public class MainActivity extends ActionBarActivity {
         Notification notificationWithPages = new NotificationCompat.Builder(this)
                 .setContentTitle(author)
                 .setContentText(message)
-                .setSmallIcon(R.drawable.ic_launcher)
+                .setSmallIcon(R.drawable.ic_stat_notify)
                 .setContentIntent(getConversationPendingIntent(author, requestCode))
                 .setGroup(GROUP_KEY_MESSAGES)
                 .extend(wearableExtender)
@@ -251,7 +262,7 @@ public class MainActivity extends ActionBarActivity {
         RemoteInput remoteInput = new RemoteInput.Builder(ChatDetailActivity.EXTRA_VOICE_REPLY)
                 .setLabel("Reply")
                 .setChoices(choices)
-                .setAllowFreeFormInput(true)
+                .setAllowFreeFormInput(false)
                 .build();
 
         PendingIntent replyPendingIntent = getConversationPendingIntent("Preppy Rabbit", 0);
@@ -269,8 +280,9 @@ public class MainActivity extends ActionBarActivity {
         Notification notification = new NotificationCompat.Builder(this)
                 .setContentTitle("Preppy Rabbit")
                 .setContentText("Hey Fox")
-                .setSmallIcon(R.drawable.ic_launcher)
+                .setSmallIcon(R.drawable.ic_stat_notify)
                 .setContentIntent(getConversationPendingIntent("Preppy Rabbit", 20))
+                .setCategory(Notification.CATEGORY_MESSAGE)
                 .setPriority(Notification.PRIORITY_HIGH)
                 .setDefaults(Notification.DEFAULT_ALL)
                 .setLargeIcon(preppyAvatar)
@@ -283,7 +295,8 @@ public class MainActivity extends ActionBarActivity {
 
     public void onBackgroundOnlyImageClick(View view) {
         Notification imageOneNotification = getImageOnlyNotification("Fox Avatar", R.drawable.fox);
-        Notification imageTwoNotification = getImageOnlyNotification("Rabbit Avatar", R.drawable.preppy);
+        Notification imageTwoNotification = getImageOnlyNotification("Rabbit Avatar",
+                R.drawable.preppy);
 
         NotificationCompat.WearableExtender wearableExtender = new NotificationCompat.WearableExtender()
                 .setHintHideIcon(true)
@@ -293,8 +306,9 @@ public class MainActivity extends ActionBarActivity {
         Notification notification = new NotificationCompat.Builder(this)
                 .setContentTitle("My Slideshow")
                 .setContentText("")
-                .setSmallIcon(R.drawable.ic_launcher)
+                .setSmallIcon(R.drawable.ic_stat_notify)
                 .setContentIntent(getMainActivityPendingIntent())
+                .setCategory(Notification.CATEGORY_SOCIAL)
                 .extend(wearableExtender)
                 .build();
 
@@ -303,14 +317,15 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private Notification getImageOnlyNotification(String title, int drawableResource) {
-        NotificationCompat.WearableExtender wearableExtender = new NotificationCompat.WearableExtender()
+        NotificationCompat.WearableExtender wearableExtender =
+                new NotificationCompat.WearableExtender()
                 .setBackground(BitmapFactory.decodeResource(getResources(), drawableResource))
                 .setHintShowBackgroundOnly(true);
 
         return new NotificationCompat.Builder(this)
                 .setContentTitle(title)
                 .setContentText("")
-                .setSmallIcon(R.drawable.ic_launcher)
+                .setSmallIcon(R.drawable.ic_stat_notify)
                 .extend(wearableExtender)
                 .build();
     }
@@ -335,8 +350,9 @@ public class MainActivity extends ActionBarActivity {
         Notification notification = new NotificationCompat.Builder(this)
                 .setContentTitle("Song Name")
                 .setContentText("Artist Name")
-                .setSmallIcon(R.drawable.ic_launcher)
+                .setSmallIcon(R.drawable.ic_stat_notify)
                 .setContentIntent(getMainActivityPendingIntent())
+                .setCategory(Notification.CATEGORY_TRANSPORT)
                 .addAction(handheldPauseAction)
                 .extend(wearableExtender)
                 .build();

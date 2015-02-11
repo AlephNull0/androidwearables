@@ -26,7 +26,7 @@ public class ChatDetailActivity extends ActionBarActivity {
 
         String chattingWith = getIntent().getStringExtra(EXTRA_CHATTING_WITH);
         if(chattingWith != null) {
-            getActionBar().setTitle(chattingWith);
+            getSupportActionBar().setTitle(chattingWith);
         }
     }
 

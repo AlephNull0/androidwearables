@@ -21,5 +21,4 @@ public class ActionFeedbackActivity extends ActionBarActivity {
             ((TextView) findViewById(R.id.action_feedback)).setText(actionFeedback);
         }
     }
-
 }
