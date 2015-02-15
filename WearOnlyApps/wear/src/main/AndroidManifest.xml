@@ -1,10 +1,51 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.ocddevelopers.androidwearables.wearonlyapps">
+
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
     <uses-feature android:name="android.hardware.type.watch"/>
+
     <application android:allowBackup="true"
                  android:label="@string/app_name"
-                 android:icon="@mipmap/ic_launcher"
-                 android:theme="@android:style/Theme.DeviceDefault">
+                 android:icon="@drawable/ic_launcher"
+                 android:theme="@android:style/Theme.DeviceDefault.Light">
+
+        <activity
+            android:name=".MainActivity"
+            android:label="Hello Wear">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".WearableListViewActivity"
+            android:label="WearableListView Demo">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".TimerActivity"
+            android:label="Timer Demo" >
+            <intent-filter>
+                <action android:name="android.intent.action.SET_TIMER" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".TimerCompletedActivity" />
+
+        <receiver android:name=".CommandReceiver" >
+            <intent-filter>
+                <action android:name="com.ocddevelopers.androidwearables.wearonlyapps.action.TRIGGER_ALARM" />
+                <action android:name="com.ocddevelopers.androidwearables.wearonlyapps.action.PAUSE_TIMER" />
+                <action android:name="com.ocddevelopers.androidwearables.wearonlyapps.action.STOP_TIMER" />
+            </intent-filter>
+        </receiver>
 
     </application>
 
