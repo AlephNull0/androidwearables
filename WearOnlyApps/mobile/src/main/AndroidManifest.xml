@@ -6,6 +6,7 @@
                  android:icon="@mipmap/ic_launcher"
                  android:theme="@style/AppTheme">
 
+
     </application>
 
 </manifest>
