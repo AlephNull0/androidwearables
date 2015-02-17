@@ -11,7 +11,7 @@
                  android:theme="@android:style/Theme.DeviceDefault.Light">
 
         <activity
-            android:name=".MainActivity"
+            android:name=".HelloWearActivity"
             android:label="Hello Wear">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,8 +20,17 @@
         </activity>
 
         <activity
-            android:name=".WearableListViewActivity"
-            android:label="WearableListView Demo">
+            android:name=".SimpleWearableListViewActivity"
+            android:label="Simple List Demo" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".AnimatedListViewActivity"
+            android:label="Animated List Demo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

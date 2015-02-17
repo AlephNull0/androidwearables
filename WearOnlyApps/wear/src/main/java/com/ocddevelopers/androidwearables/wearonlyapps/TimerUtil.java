@@ -15,9 +15,6 @@ import android.support.v4.app.NotificationManagerCompat;
 
 import java.util.Locale;
 
-/**
- * Created by andres on 8/31/14.
- */
 public class TimerUtil {
     private static final int NOTIFICATION_ID = 1;
     public static final long[] FORCE_TOP_PATTERN = { 0L };
@@ -46,49 +43,6 @@ public class TimerUtil {
 
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, alarmTime, completedPendingIntent);
-    }
-
-    private static void removeTimerAlarm(Context context) {
-        Intent alarmCompletedIntent = CommandReceiver.makeTriggerAlarmIntent(0L);
-        PendingIntent alarmCompletedPendingIntent = PendingIntent.getBroadcast(context, 0,
-                alarmCompletedIntent, PendingIntent.FLAG_NO_CREATE);
-
-        if(alarmCompletedPendingIntent != null) {
-            AlarmManager alarmManager = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
-            alarmManager.cancel(alarmCompletedPendingIntent);
-            alarmCompletedPendingIntent.cancel();
-        }
-    }
-
-    public static void pauseTimer(Context context) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        long now = SystemClock.elapsedRealtime();
-        long prevStartTime = prefs.getLong(PREFS_PREV_START_TIME, 0L);
-        long elapsed = prefs.getLong(PREFS_TIME_ELAPSED, 0L);
-        long duration = prefs.getLong(PREFS_TIMER_DURATION, 0L);
-        boolean isPaused = prefs.getBoolean(PREFS_IS_PAUSED, false);
-
-        if(isPaused) {
-            // resume timer
-            long timerDueTimeMillis = System.currentTimeMillis() + duration - elapsed;
-            setTimerAlarm(context, timerDueTimeMillis);
-            createTimerNotification(context, timerDueTimeMillis, false);
-
-            SharedPreferences.Editor editor = prefs.edit();
-            editor.putLong(PREFS_PREV_START_TIME, now);
-            editor.putBoolean(PREFS_IS_PAUSED, false);
-            editor.commit();
-        } else {
-            // pause timer
-            elapsed = elapsed + now - prevStartTime;
-            removeTimerAlarm(context);
-            createTimerNotification(context, duration-elapsed + System.currentTimeMillis(), true);
-
-            SharedPreferences.Editor editor = prefs.edit();
-            editor.putLong(PREFS_TIME_ELAPSED, elapsed);
-            editor.putBoolean(PREFS_IS_PAUSED, true);
-            editor.commit();
-        }
     }
 
     /**
@@ -135,7 +89,7 @@ public class TimerUtil {
                 .addAction(R.drawable.ic_full_cancel, "Delete", stopPendingIntent)
                 .setPriority(Notification.PRIORITY_HIGH)
                 .setCategory(Notification.CATEGORY_ALARM)
-                .setVibrate(FORCE_TOP_PATTERN)
+                //.setVibrate(FORCE_TOP_PATTERN)
                 .extend(wearableExtender);
 
         // if paused, set content title and content text. otherwise, show timer countdown
@@ -158,8 +112,51 @@ public class TimerUtil {
         removeTimerNotification(context);
     }
 
+    private static void removeTimerAlarm(Context context) {
+        Intent alarmCompletedIntent = CommandReceiver.makeTriggerAlarmIntent(0L);
+        PendingIntent alarmCompletedPendingIntent = PendingIntent.getBroadcast(context, 0,
+                alarmCompletedIntent, PendingIntent.FLAG_NO_CREATE);
+
+        if(alarmCompletedPendingIntent != null) {
+            AlarmManager alarmManager = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+            alarmManager.cancel(alarmCompletedPendingIntent);
+            alarmCompletedPendingIntent.cancel();
+        }
+    }
+
     private static void removeTimerNotification(Context context) {
         NotificationManagerCompat.from(context).cancel(NOTIFICATION_ID);
+    }
+
+    public static void pauseTimer(Context context) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        long now = SystemClock.elapsedRealtime();
+        long prevStartTime = prefs.getLong(PREFS_PREV_START_TIME, 0L);
+        long elapsed = prefs.getLong(PREFS_TIME_ELAPSED, 0L);
+        long duration = prefs.getLong(PREFS_TIMER_DURATION, 0L);
+        boolean isPaused = prefs.getBoolean(PREFS_IS_PAUSED, false);
+
+        if(isPaused) {
+            // resume timer
+            long timerDueTimeMillis = System.currentTimeMillis() + duration - elapsed;
+            setTimerAlarm(context, timerDueTimeMillis);
+            createTimerNotification(context, timerDueTimeMillis, false);
+
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putLong(PREFS_PREV_START_TIME, now);
+            editor.putBoolean(PREFS_IS_PAUSED, false);
+            editor.commit();
+        } else {
+            // pause timer
+            elapsed = elapsed + now - prevStartTime;
+            removeTimerAlarm(context);
+            createTimerNotification(context, duration-elapsed + System.currentTimeMillis(), true);
+
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putLong(PREFS_TIME_ELAPSED, elapsed);
+            editor.putBoolean(PREFS_IS_PAUSED, true);
+            editor.commit();
+        }
     }
 
 }

@@ -19,7 +19,7 @@ public class TimerActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_timer);
+        setContentView(R.layout.activity_wlistview);
 
         int timerDuration = getIntent().getIntExtra(AlarmClock.EXTRA_LENGTH, -1);
         if(timerDuration > 0) {
@@ -28,57 +28,26 @@ public class TimerActivity extends Activity {
         } else {
             // of EXTRA_LENGTH is not available, then we must prompt the user for a timer duration
             WearableListView wearableListView = (WearableListView)findViewById(R.id.list);
-            //TimerDurationAdapter timerDurationAdapter = new TimerDurationAdapter(this);
             WearableAdapter timerDurationAdapter = new WearableAdapter(this, TIMER_PRESETS_LABEL);
             wearableListView.setAdapter(timerDurationAdapter);
-            wearableListView.setClickListener(new WearableListView.ClickListener() {
-                @Override
-                public void onClick(WearableListView.ViewHolder viewHolder) {
-                    // once the user picks a duration, create timer alarm/notification and exit
-                    int position = (Integer)viewHolder.itemView.getTag();
-                    int duration = TIMER_PRESETS_DURATION_SECS[position];
-                    TimerUtil.createNewTimer(TimerActivity.this, duration*1000L);
-                    finish();
-                }
-
-                @Override
-                public void onTopEmptyRegionClick() {
-
-                }
-            });
+            wearableListView.setClickListener(mClickListener);
         }
     }
 
-    /**
-     * An Adapter used to display a list of timer durations in a WearableListView.
-     */
-    /*
-    private static final class TimerDurationAdapter extends WearableListView.Adapter {
-        private final Context mContext;
-        private final LayoutInflater mInflater;
-
-        private TimerDurationAdapter(Context context) {
-            mContext = context;
-            mInflater = LayoutInflater.from(context);
+    private WearableListView.ClickListener mClickListener = new WearableListView.ClickListener() {
+        @Override
+        public void onClick(WearableListView.ViewHolder viewHolder) {
+            // once the user picks a duration, create timer alarm/notification and exit
+            int position = viewHolder.getPosition();
+            int duration = TIMER_PRESETS_DURATION_SECS[position];
+            TimerUtil.createNewTimer(TimerActivity.this, duration*1000L);
+            finish();
         }
 
         @Override
-        public WearableListView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            return new WearableListView.ViewHolder(mInflater.inflate(R.layout.list_item, null));
-        }
+        public void onTopEmptyRegionClick() {
 
-        @Override
-        public void onBindViewHolder(WearableListView.ViewHolder holder, int position) {
-            TextView view = (TextView) holder.itemView.findViewById(R.id.name);
-            view.setText(TIMER_PRESETS_LABEL[position]);
-            holder.itemView.setTag(Integer.valueOf(TIMER_PRESETS_DURATION_SECS[position]));
         }
-
-        @Override
-        public int getItemCount() {
-            return TIMER_PRESETS_DURATION_SECS.length;
-        }
-    }
-    */
+    };
 
 }

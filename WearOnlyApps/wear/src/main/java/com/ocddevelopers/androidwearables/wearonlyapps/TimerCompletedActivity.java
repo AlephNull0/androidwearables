@@ -22,7 +22,7 @@ public class TimerCompletedActivity extends Activity {
     private TextView mTimeSinceCompleted;
     private Handler mHandler;
     private Vibrator mVibrator;
-    private long mStartTime;
+    private long mTimerCompletionTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +38,8 @@ public class TimerCompletedActivity extends Activity {
         mVibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
         // start playing alarm
-        mStartTime = getIntent().getLongExtra(EXTRA_START_TIME, -1);
-        if(mStartTime >= 0) {
+        mTimerCompletionTime = getIntent().getLongExtra(EXTRA_START_TIME, -1);
+        if(mTimerCompletionTime >= 0) {
             mRunnable.run();
         } else {
             throw new RuntimeException("TimerCompletedActivity requires the timer's start time extra");
@@ -61,7 +61,7 @@ public class TimerCompletedActivity extends Activity {
     private Runnable mRunnable = new Runnable() {
         @Override
         public void run() {
-            int deltaSeconds = (int)(System.currentTimeMillis() - mStartTime)/MILLIS_PER_SECOND;
+            int deltaSeconds = (int)(System.currentTimeMillis() - mTimerCompletionTime)/MILLIS_PER_SECOND;
             String delta = DateUtils.formatElapsedTime(deltaSeconds);
             mTimeSinceCompleted.setText("-" + delta);
             mVibrator.vibrate(VIBRATION_DURATION);

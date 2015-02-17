@@ -38,8 +38,6 @@ public class WearableListItemLayout extends LinearLayout
     private float mSmallCircleRadius;
     private ObjectAnimator mScalingDownAnimator;
     private ObjectAnimator mScalingUpAnimator;
-    private float[] mScaleUpValues, mScaleDownValues;
-
 
     public WearableListItemLayout(Context context) {
         this(context, null);
@@ -60,18 +58,6 @@ public class WearableListItemLayout extends LinearLayout
         mSmallCircleRadius = getResources().getDimensionPixelSize(R.dimen.small_circle_radius);
         mBigCircleRadius = getResources().getDimensionPixelSize(R.dimen.big_circle_radius);
 
-        mScaleUpValues = new float[2];
-        mScaleUpValues[0] = mSmallCircleRadius;
-        mScaleUpValues[1] = mBigCircleRadius;
-        mScalingUpAnimator = ObjectAnimator.ofFloat(this, "circleRadius", mScaleUpValues);
-        mScalingUpAnimator.setDuration(150L);
-
-        mScaleDownValues = new float[2];
-        mScaleDownValues[0] = this.mBigCircleRadius;
-        mScaleDownValues[1] = this.mSmallCircleRadius;
-        mScalingDownAnimator = ObjectAnimator.ofFloat(this, "circleRadius", mScaleDownValues);
-        mScalingDownAnimator.setDuration(150L);
-
         // when expanded, the circle may extend beyond the bounds of the view
         setClipChildren(false);
     }
@@ -81,6 +67,12 @@ public class WearableListItemLayout extends LinearLayout
         super.onFinishInflate();
         mCircle = (CircledImageView) findViewById(R.id.circle);
         mName = (TextView) findViewById(R.id.name);
+
+        mScalingUpAnimator = ObjectAnimator.ofFloat(mCircle, "circleRadius", mBigCircleRadius);
+        mScalingUpAnimator.setDuration(150L);
+
+        mScalingDownAnimator = ObjectAnimator.ofFloat(mCircle, "circleRadius", mSmallCircleRadius);
+        mScalingDownAnimator.setDuration(150L);
     }
 
     @Override
@@ -88,8 +80,6 @@ public class WearableListItemLayout extends LinearLayout
         if(animate) {
             mScalingDownAnimator.cancel();
             if (!mScalingUpAnimator.isRunning() && mCircle.getCircleRadius() != mBigCircleRadius) {
-                mScaleUpValues[0] = mCircle.getCircleRadius();
-                mScalingUpAnimator.setFloatValues(mScaleUpValues);
                 mScalingUpAnimator.start();
             }
         } else {
@@ -106,8 +96,6 @@ public class WearableListItemLayout extends LinearLayout
         if(animate) {
             mScalingUpAnimator.cancel();
             if(!mScalingDownAnimator.isRunning() && mCircle.getCircleRadius() != mSmallCircleRadius) {
-                mScaleDownValues[0] = mCircle.getCircleRadius();
-                mScalingDownAnimator.setFloatValues(mScaleDownValues);
                 mScalingDownAnimator.start();
             }
         } else {

@@ -33,7 +33,6 @@ public class WearableAdapter extends WearableListView.Adapter {
         ItemViewHolder itemViewHolder = (ItemViewHolder) viewHolder;
         TextView textView = itemViewHolder.mItemTextView;
         textView.setText(mItems.get(position));
-        ((ItemViewHolder) viewHolder).itemView.setTag(position);
     }
 
     @Override
