@@ -1,0 +1,74 @@
+{
+  "words": [
+    {
+      "word": "quail",
+      "category": "verb",
+      "definition": "feel or show fear or apprehension",
+      "example_sentence": "She quailed at his heartless words.",
+      "synonyms": "cower, cringe, shrink, recoil"
+    },
+    {
+      "word": "kerfuffle",
+      "category": "noun",
+      "definition": "a commotion or fuss, especially one caused by conflicting views",
+      "example_sentence": "There was a kerfuffle over the chairmanship.",
+      "synonyms": "commotion, disturbance, fracas, disruption"
+    },
+    {
+      "word": "philistine",
+      "category": "noun",
+      "definition": "A person who is hostile or indifferent to culture and the arts or who has no understanding of them. One who is contentedly commonplace in ideas and tastes.",
+      "example_sentence": "I am a complete philistine when it comes to paintings.",
+      "synonyms": "barbarian, roughneck"
+    },
+    {
+      "word": "bravura",
+      "category": "noun",
+      "definition": "great technical skill and brilliance shown in a performance or activity",
+      "example_sentence": "The recital ended with a blazing display of bravura.",
+      "synonyms": "virtuoso, masterly, outstanding"
+    },
+    {
+      "word": "forlorn",
+      "category": "adjective",
+      "definition": "pitifully sad and abandoned or lonely",
+      "example_sentence": "No matter how he tried to cheer Annie, her forlorn expression went nowhere.",
+      "synonyms": "unhappy, sad, miserable"
+    },
+    {
+      "word": "potentate",
+      "category": "noun",
+      "definition": "a monarch or ruler, especially an autocratic one",
+      "example_sentence": "Cameron frequents diplomatic missions to foreign potentates.",
+      "synonyms": "ruler, monarch, sovereign"
+    },
+    {
+      "word": "dynamo",
+      "category": "noun",
+      "definition": "a machine for converting mechanical energy into electrical energy",
+      "example_sentence": "Without a dynamo, a blackout would wreak havoc in the incubation room.",
+      "synonyms": "generator"
+    },
+    {
+      "word": "arriviste",
+      "category": "noun",
+      "definition": "a person who recently acquired unaccustomed status; pushy and ambitious",
+      "example_sentence": "Ever since he won the lottery, Jared has been nothing but a selfish arriviste.",
+      "synonyms": "new money"
+    },
+    {
+      "word": "staid",
+      "category": "adjective",
+      "definition": "sedate, respectable, and unadventurous",
+      "example_sentence": "The staid lawyer refused to take a lunch break.",
+      "synonyms": "quiet, conventional, sober, stiff"
+    },
+    {
+      "word": "prevaricate",
+      "category": "verb",
+      "definition": "speak or act in an evasive way",
+      "example_sentence": "The politician prevaricated when journalists asked pointed questions.",
+      "synonyms": "dodge, sidestep, equivocate, waffle"
+    }
+  ]
+}

@@ -160,7 +160,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void onBigTextStyleButtonClick(View view) {
-        String longText = "Without BigTextStyle, only a single line of text would be visible." +
+        String longText = "Without BigTextStyle, only a single line of text would be visible. " +
                 "Any additional text would not appear directly on the notification. " +
                 "The entire first line would not even be on the notification if it were too long. " +
                 "Text that doesn't fit in a standard notification becomes ellipsized. " +
