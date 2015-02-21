@@ -4,21 +4,20 @@ public class VocabularyWord {
     private String mWord, mExampleSentence, mCategory, mDefinition;
     private String mSynonyms;
 
-    public VocabularyWord(String word, String category, String definition, String exampleSentence,
-                          String synonyms) {
+    public VocabularyWord(String word, String category, String definition,
+                          String exampleSentence) {
         mWord = word;
         mCategory = category;
         mDefinition = definition;
         mExampleSentence = exampleSentence;
-        mSynonyms = synonyms;
     }
 
     public String getWord() {
         return mWord;
     }
 
-    public void setWord(String mWord) {
-        this.mWord = mWord;
+    public void setWord(String word) {
+        mWord = word;
     }
 
     public String getExampleSentence() {
@@ -51,5 +50,9 @@ public class VocabularyWord {
 
     public void setSynonyms(String synonyms) {
         mSynonyms = synonyms;
+    }
+
+    public boolean hasSynonyms() {
+        return mSynonyms != null;
     }
 }

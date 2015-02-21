@@ -23,9 +23,13 @@ public class VocabularyList {
                 String category = wordObject.getString("category");
                 String definition = wordObject.getString("definition");
                 String exampleSentence = wordObject.getString("example_sentence");
-                String synonyms = wordObject.getString("synonyms");
+                String synonyms = wordObject.optString("synonyms");
 
-                VocabularyWord vocabularyWord = new VocabularyWord(word, category, definition, exampleSentence, synonyms);
+                VocabularyWord vocabularyWord = new VocabularyWord(word, category,
+                        definition, exampleSentence);
+                if(!synonyms.isEmpty()) {
+                    vocabularyWord.setSynonyms(synonyms);
+                }
                 words.add(vocabularyWord);
             }
 

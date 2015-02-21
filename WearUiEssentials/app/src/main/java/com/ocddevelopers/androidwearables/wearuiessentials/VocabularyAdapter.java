@@ -51,24 +51,6 @@ public class VocabularyAdapter extends FragmentGridPagerAdapter {
 
     @Override
     public Drawable getBackgroundForPage(int row, int column) {
-        int drawableId = 0;
-
-        // uncomment to try using different background for different columns
-            /*
-            switch(column) {
-                case 0:
-                    drawableId = R.drawable.definition_bg;
-                    break;
-                case 1:
-                    drawableId = R.drawable.example_bg;
-                    break;
-                case 2:
-                    drawableId = R.drawable.synonyms_bg;
-                    break;
-            }
-            */
-
-        drawableId = R.drawable.example_bg;
         return mBackground;
     }
 
@@ -79,7 +61,11 @@ public class VocabularyAdapter extends FragmentGridPagerAdapter {
 
     @Override
     public int getColumnCount(int row) {
-        return NUMBER_OF_COLUMNS;
+        if(mVocabularyList.getVocabularyWord(row).hasSynonyms()) {
+            return 3;
+        } else {
+            return 2;
+        }
     }
 
     // Uncomment to test out fixed-movement paging.
