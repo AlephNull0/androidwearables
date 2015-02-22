@@ -49,8 +49,15 @@ public class VocabularyAdapter extends FragmentGridPagerAdapter {
         return cardFragment;
     }
 
+    /*
     @Override
     public Drawable getBackgroundForPage(int row, int column) {
+        return mBackground;
+    }
+    */
+
+    @Override
+    public Drawable getBackgroundForRow(int row) {
         return mBackground;
     }
 

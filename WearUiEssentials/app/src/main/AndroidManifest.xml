@@ -4,7 +4,7 @@
     <application android:allowBackup="true"
                  android:label="@string/app_name"
                  android:icon="@drawable/ic_launcher"
-                 android:theme="@android:style/Theme.DeviceDefault">
+                 android:theme="@android:style/Theme.DeviceDefault.Light">
 
         <activity
             android:name=".VocabularyActivity"
@@ -20,16 +20,41 @@
             android:label="Confirmation Demo" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name="android.support.wearable.activity.ConfirmationActivity" />
+            android:name="android.support.wearable.activity.ConfirmationActivity"
+            android:theme="@style/NoOverscan"/>
         <activity
             android:name=".DelayedConfirmationActivity"
             android:label="Delayed Confirmation Demo" >
         </activity>
+
+        <activity
+            android:name=".RunStatsActivity"
+            android:allowEmbedded="true"
+            android:exported="true"
+            android:label="Run Stats"
+            android:taskAffinity="" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".RunStatsNotificationActivity"
+            android:label="Run Stats Notification" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".RunStatsNotificationService"
+            android:exported="false" >
+        </service>
 
     </application>
 
