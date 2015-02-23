@@ -5,25 +5,27 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.data.FreezableUtils;
 import com.google.android.gms.wearable.DataApi;
 import com.google.android.gms.wearable.DataEvent;
 import com.google.android.gms.wearable.DataEventBuffer;
 import com.google.android.gms.wearable.DataItem;
+import com.google.android.gms.wearable.DataItemBuffer;
 import com.google.android.gms.wearable.DataMap;
 import com.google.android.gms.wearable.DataMapItem;
-import com.google.android.gms.wearable.PutDataMapRequest;
-import com.google.android.gms.wearable.PutDataRequest;
+import com.google.android.gms.wearable.Node;
+import com.google.android.gms.wearable.NodeApi;
 import com.google.android.gms.wearable.Wearable;
 
 import java.util.List;
 
 public class CounterActivity extends Activity {
-
+    public static final String COUNTER_INCREMENT_PATH = "/counter/increment";
+    public static final String COUNTER_DECREMENT_PATH = "/counter/decrement";
+    public static final String COUNTER_PATH = "/counter";
+    public static final String KEY_COUNT = "count";
     private TextView mCountText;
     private GoogleApiClient mGoogleApiClient;
     int mCount = -1;
@@ -38,7 +40,6 @@ public class CounterActivity extends Activity {
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addApi(Wearable.API)
                 .addConnectionCallbacks(mConnectionCallbacks)
-                .addOnConnectionFailedListener(mConnectionFailedListener)
                 .build();
     }
 
@@ -50,37 +51,30 @@ public class CounterActivity extends Activity {
 
     @Override
     protected void onStop() {
-        mGoogleApiClient.disconnect();
         Wearable.DataApi.removeListener(mGoogleApiClient, mDataListener);
+        mGoogleApiClient.disconnect();
         super.onStop();
     }
 
     public void onIncrementClick(View view) {
-        ++mCount;
-        updateCount();
-    }
-
-    private void updateCount() {
-        mCountText.setText(Integer.toString(mCount));
-
-        PutDataMapRequest updateCountDataMapRequest = PutDataMapRequest.create("/counter");
-        updateCountDataMapRequest.getDataMap().putInt("count", mCount);
-        PutDataRequest putDataRequest = updateCountDataMapRequest.asPutDataRequest();
-
-        PendingResult<DataApi.DataItemResult> pendingResult =
-                Wearable.DataApi.putDataItem(mGoogleApiClient, putDataRequest);
-        pendingResult.setResultCallback(new ResultCallback<DataApi.DataItemResult>() {
-            @Override
-            public void onResult(DataApi.DataItemResult dataItemResult) {
-
-            }
-        });
-
+        sendMessage(COUNTER_INCREMENT_PATH);
     }
 
     public void onDecrementClick(View view) {
-        --mCount;
-        updateCount();
+        sendMessage(COUNTER_DECREMENT_PATH);
+    }
+
+    private void sendMessage(final String path) {
+        Wearable.NodeApi.getConnectedNodes(mGoogleApiClient).setResultCallback(
+                new ResultCallback<NodeApi.GetConnectedNodesResult>() {
+            @Override
+            public void onResult(NodeApi.GetConnectedNodesResult getConnectedNodesResult) {
+                for (Node node : getConnectedNodesResult.getNodes()) {
+                    Wearable.MessageApi.sendMessage(mGoogleApiClient, node.getId(),
+                            path, null);
+                }
+            }
+        });
     }
 
     private GoogleApiClient.ConnectionCallbacks mConnectionCallbacks =
@@ -88,20 +82,28 @@ public class CounterActivity extends Activity {
         @Override
         public void onConnected(Bundle bundle) {
             Wearable.DataApi.addListener(mGoogleApiClient, mDataListener);
+            loadRemoteNodeId();
         }
 
         @Override
         public void onConnectionSuspended(int cause) {
-
         }
     };
 
-    private GoogleApiClient.OnConnectionFailedListener mConnectionFailedListener =
-            new GoogleApiClient.OnConnectionFailedListener() {
-        @Override
-        public void onConnectionFailed(ConnectionResult connectionResult) {
-        }
-    };
+
+    private void loadRemoteNodeId() {
+        Wearable.DataApi.getDataItems(mGoogleApiClient).setResultCallback(new ResultCallback<DataItemBuffer>() {
+            @Override
+            public void onResult(DataItemBuffer dataItems) {
+                for (int i = 0; i < dataItems.getCount(); ++i) {
+                    DataItem dataItem = dataItems.get(i);
+                    if (COUNTER_PATH.equals(dataItem.getUri().getPath())) {
+                        updateCountFromDataItem(dataItem);
+                    }
+                }
+            }
+        });
+    }
 
     private DataApi.DataListener mDataListener = new DataApi.DataListener() {
         @Override
@@ -111,20 +113,21 @@ public class CounterActivity extends Activity {
             for(DataEvent dataEvent : events) {
                 DataItem dataItem = dataEvent.getDataItem();
                 if("/counter".equals(dataItem.getUri().getPath())) {
-                    DataMapItem dataMapItem = DataMapItem.fromDataItem(dataItem);
-                    DataMap dataMap = dataMapItem.getDataMap();
-                    int count = dataMap.getInt("count");
-                    mCount = count;
-
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            mCountText.setText(Integer.toString(mCount));
-                        }
-                    });
+                    updateCountFromDataItem(dataItem);
                 }
             }
         }
     };
+
+    private void updateCountFromDataItem(DataItem dataItem) {
+        DataMap dataMap = DataMapItem.fromDataItem(dataItem).getDataMap();
+        mCount = dataMap.getInt(KEY_COUNT);
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                mCountText.setText(Integer.toString(mCount));
+            }
+        });
+    }
 
 }

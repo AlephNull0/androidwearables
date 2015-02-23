@@ -1,19 +1,18 @@
 package com.ocddevelopers.androidwearables.wearabledatalayer;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.wearable.Wearable;
 
 
-public class MinimalGoogleApiClientActivity extends Activity {
+public class MinimalGoogleApiClientActivity extends ActionBarActivity {
     private GoogleApiClient mGoogleApiClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_google_api_client);
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addApi(Wearable.API)

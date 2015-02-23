@@ -2,12 +2,8 @@
 <android.support.wearable.view.BoxInsetLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/watch_view_stub"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".CounterActivity"
-    tools:deviceIds="wear">
+    android:layout_height="match_parent">
 
     <RelativeLayout
         app:layout_box="all"
@@ -16,7 +12,6 @@
 
         <TextView
             android:id="@+id/count"
-            tools:text="23"
             android:textSize="32sp"
             android:layout_centerInParent="true"
             android:layout_width="wrap_content"

@@ -1,11 +1,12 @@
 package com.ocddevelopers.androidwearables.wearabledatalayer;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.ErrorDialogFragment;
@@ -14,7 +15,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.wearable.Wearable;
 
 
-public class GoogleApiClientActivity extends Activity {
+public class GoogleApiClientActivity extends ActionBarActivity {
     private static final String STATE_RESOLVING_ERROR = "resolving_error";
     private static final int REQUEST_RESOLVE_ERROR = 1001;
     private static final String ERROR_FRAGMENT_TAG = "errordialog";
@@ -76,10 +77,14 @@ public class GoogleApiClientActivity extends Activity {
             new GoogleApiClient.ConnectionCallbacks() {
         @Override
         public void onConnected(Bundle bundle) {
+            // you can now use the wearable data layer API
+            Toast.makeText(getApplicationContext(), "Connected to GoogleApiClient",
+                    Toast.LENGTH_SHORT).show();
         }
 
         @Override
         public void onConnectionSuspended(int cause) {
+            // disable any buttons or interface elements that require the wearable API
         }
     };
 
