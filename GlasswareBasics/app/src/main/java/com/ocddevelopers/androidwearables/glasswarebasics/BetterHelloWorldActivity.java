@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.google.android.glass.media.Sounds;
 
-public class MainActivity extends Activity {
+public class BetterHelloWorldActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,15 +19,18 @@ public class MainActivity extends Activity {
         helloWorld.setText("Hello World");
 
         TuggableView tuggableView = new TuggableView(this, helloWorld);
-        tuggableView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-                audioManager.playSoundEffect(Sounds.DISALLOWED);
-            }
-        });
+        tuggableView.setOnItemClickListener(mItemClickListener);
 
         setContentView(tuggableView);
     }
+
+    private AdapterView.OnItemClickListener mItemClickListener =
+            new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+            audioManager.playSoundEffect(Sounds.DISALLOWED);
+        }
+    };
 
 }

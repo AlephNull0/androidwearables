@@ -36,20 +36,22 @@ public class ScrollingCardsActivity extends Activity {
         TextCardAdapter textCardAdapter = new TextCardAdapter(this, mWords);
         mCardScrollView = new CardScrollView(this);
         mCardScrollView.setAdapter(textCardAdapter);
-
-        mCardScrollView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-                audioManager.playSoundEffect(Sounds.TAP);
-
-                Toast.makeText(ScrollingCardsActivity.this, "Clicked on item " + mWords.get(position),
-                        Toast.LENGTH_SHORT).show();
-            }
-        });
+        mCardScrollView.setOnItemClickListener(itemClickListener);
 
         setContentView(mCardScrollView);
     }
+
+    private AdapterView.OnItemClickListener itemClickListener =
+            new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+            audioManager.playSoundEffect(Sounds.TAP);
+
+            Toast.makeText(ScrollingCardsActivity.this, "Clicked on item " + mWords.get(position),
+                    Toast.LENGTH_SHORT).show();
+        }
+    };
 
     @Override
     protected void onResume() {
