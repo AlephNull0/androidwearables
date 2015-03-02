@@ -4,13 +4,6 @@
     </style>
 
     <style name="TimeComponent">
-        <item name="android:layout_width">150px</item>
-        <item name="android:layout_height">150px</item>
-        <item name="android:layout_gravity">center</item>
-        <item name="android:layout_marginTop">-17px</item>
-        <item name="android:gravity">center</item>
-        <item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
-        <item name="android:textSize">130px</item>
     </style>
     <style name="ComponentIcon">
         <item name="android:layout_width">55px</item>
@@ -23,5 +16,8 @@
         <item name="android:colorBackgroundCacheHint">@null</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowAnimationStyle">@null</item>
+    </style>
+    <style name="DialogTheme" parent="@android:style/Theme.DeviceDefault.Dialog">
+        <item name="android:windowBackground">@color/dialog_bgcolor</item>
     </style>
 </resources>

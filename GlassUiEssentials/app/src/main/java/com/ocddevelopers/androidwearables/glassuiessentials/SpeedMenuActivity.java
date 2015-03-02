@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class LowFreqPomodoroMenuActivity extends Activity {
+public class SpeedMenuActivity extends Activity {
     @Override
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
@@ -14,7 +14,7 @@ public class LowFreqPomodoroMenuActivity extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.pomodoro_lowfreq, menu);
+        getMenuInflater().inflate(R.menu.speed, menu);
         return true;
     }
 
@@ -22,7 +22,7 @@ public class LowFreqPomodoroMenuActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()) {
             case R.id.stop:
-                stopService(new Intent(this, PomodoroServiceLowFreq.class));
+                stopService(new Intent(this, SpeedService.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -33,4 +33,5 @@ public class LowFreqPomodoroMenuActivity extends Activity {
     public void onOptionsMenuClosed(Menu menu) {
         finish();
     }
+
 }

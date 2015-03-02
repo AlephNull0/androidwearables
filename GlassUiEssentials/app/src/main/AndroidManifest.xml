@@ -19,29 +19,58 @@
                 android:resource="@xml/card_list_trigger" />
         </activity>
 
-        <service android:name=".PomodoroServiceLowFreq"
+        <service android:name=".BatteryService"
                  android:icon="@drawable/ic_launcher">
             <intent-filter>
                 <action android:name="com.google.android.glass.action.VOICE_TRIGGER" />
             </intent-filter>
             <meta-data
                 android:name="com.google.android.glass.VoiceTrigger"
-                android:resource="@xml/pomodoro_lowfreq_trigger" />
+                android:resource="@xml/battery_trigger" />
         </service>
 
-        <activity android:name=".LowFreqPomodoroMenuActivity" />
+        <activity
+            android:name=".BatteryMenuActivity"
+            android:theme="@style/MenuTheme" />
 
-        <service android:name=".PomodoroServiceHighFreq"
+        <service android:name=".SpeedService"
                  android:icon="@drawable/ic_launcher">
             <intent-filter>
                 <action android:name="com.google.android.glass.action.VOICE_TRIGGER" />
             </intent-filter>
             <meta-data
                 android:name="com.google.android.glass.VoiceTrigger"
-                android:resource="@xml/pomodoro_highfreq_trigger" />
+                android:resource="@xml/speed_trigger" />
         </service>
 
-        <activity android:name=".HighFreqPomodoroMenuActivity" />
+        <activity
+            android:name=".SpeedMenuActivity"
+            android:theme="@style/MenuTheme" />
+
+        <service android:name=".DigitalSpeedService"
+                 android:icon="@drawable/ic_launcher">
+            <intent-filter>
+                <action android:name="com.google.android.glass.action.VOICE_TRIGGER" />
+            </intent-filter>
+            <meta-data
+                android:name="com.google.android.glass.VoiceTrigger"
+                android:resource="@xml/digital_speed_trigger" />
+        </service>
+
+        <activity
+            android:name=".DigitalSpeedMenuActivity"
+            android:theme="@style/MenuTheme" />
+
+        <activity
+            android:name=".SliderActivity"
+            android:icon="@drawable/ic_launcher">
+            <intent-filter>
+                <action android:name="com.google.android.glass.action.VOICE_TRIGGER" />
+            </intent-filter>
+            <meta-data
+                android:name="com.google.android.glass.VoiceTrigger"
+                android:resource="@xml/slider_trigger" />
+        </activity>
 
     </application>
 

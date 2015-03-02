@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -34,7 +32,6 @@ public class CardListActivity extends Activity {
 
         initCards();
         mCardScrollView = new CardScrollView(this);
-        mCardScrollView.setBackgroundColor(Color.RED);
         CardListScrollAdapter adapter = new CardListScrollAdapter(mCards);
         mCardScrollView.setAdapter(adapter);
         mCardScrollView.setOnItemClickListener(mItemClickListener);
@@ -177,7 +174,8 @@ public class CardListActivity extends Activity {
         mCards.add(new CardBuilder(this, CardBuilder.Layout.TEXT)
                 .setText("Tap on this card to see a dialog with the ALERT layout.")
                 .setFootnote("Footnote")
-                .setTimestamp("just now"));
+                .setTimestamp("just now")
+                .showStackIndicator(true));
     }
 
     public static class GlassAlertDialog extends Dialog {
@@ -186,7 +184,7 @@ public class CardListActivity extends Activity {
         private GestureDetector mGestureDetector;
 
         public GlassAlertDialog(Context context, int iconRes, String text, String footnote) {
-            super(context);
+            super(context, R.style.DialogTheme);
 
             mAudioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
             mGestureDetector = new GestureDetector(context);
@@ -197,8 +195,6 @@ public class CardListActivity extends Activity {
                     .setText(text)
                     .setFootnote(footnote)
                     .getView());
-
-            getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         }
 
         @Override
