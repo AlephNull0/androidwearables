@@ -71,12 +71,8 @@ public class DigitalSpeedRenderer implements DirectRenderingCallback {
     }
 
     private void draw() {
-        Canvas canvas;
-        try {
-            canvas = mHolder.lockCanvas();
-        } catch (Exception e) {
-            return;
-        }
+        Canvas canvas = mHolder.lockCanvas();
+
         if (canvas != null) {
             canvas.drawColor(Color.BLACK);
             mDigitalSpeedView.draw(canvas);

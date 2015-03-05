@@ -19,6 +19,7 @@ import com.google.android.glass.widget.CardBuilder;
 import com.google.android.glass.widget.Slider;
 
 public final class SliderActivity extends Activity {
+    private static final int NUM_SCROLL_POSITIONS = 5;
     private Handler mHandler;
     private Slider mSlider;
     private Slider.Indeterminate mIndeterminate;
@@ -137,8 +138,8 @@ public final class SliderActivity extends Activity {
 
     private void demoScrollerSlider() {
         if(mScroller == null) {
-            mScroller = mSlider.startScroller(7, 0);
             mPosition = 0;
+            mScroller = mSlider.startScroller(NUM_SCROLL_POSITIONS-1, mPosition);
             mScrollerRunnable.run();
         }
     }
@@ -146,9 +147,10 @@ public final class SliderActivity extends Activity {
     private Runnable mScrollerRunnable = new Runnable() {
         @Override
         public void run() {
-            if(mPosition < 7) {
-                ++mPosition;
-                mScroller.setPosition(mPosition);
+            mScroller.setPosition(mPosition);
+            ++mPosition;
+
+            if(mPosition < NUM_SCROLL_POSITIONS) {
                 mHandler.postDelayed(mScrollerRunnable, 800);
             } else {
                 mScroller = null;

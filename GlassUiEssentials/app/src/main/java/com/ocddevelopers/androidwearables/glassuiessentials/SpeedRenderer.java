@@ -15,6 +15,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class SpeedRenderer implements DirectRenderingCallback {
     private static final long FRAME_TIME_MILLIS = 33;
+    private static final float ANGLE_ZERO_MPH = -135f;
+    private static final float DEGREES_PER_MPH = 9f/4f;
     private SurfaceHolder mHolder;
     private Bitmap mBackground, mNeedle;
     private Paint mBitmapPaint;
@@ -69,23 +71,19 @@ public class SpeedRenderer implements DirectRenderingCallback {
     }
 
     private void draw(float speedMph) {
-        Canvas canvas;
-        try {
-            canvas = mHolder.lockCanvas();
-        } catch (Exception e) {
-            return;
-        }
+        Canvas canvas = mHolder.lockCanvas();
+
         if (canvas != null) {
             // draw background
             canvas.drawColor(Color.BLACK);
             canvas.drawBitmap(mBackground, 0, 0, mBitmapPaint);
 
             // calculate angle
-            float angle = -135f + 9f/4f * speedMph;
+            float angle = ANGLE_ZERO_MPH + DEGREES_PER_MPH * speedMph;
 
             // draw needle
             canvas.rotate(angle, 320, 196);
-            //canvas.drawBitmap(mNeedle, 315, 109, mBitmapPaint);
+            canvas.drawBitmap(mNeedle, 315, 109, mBitmapPaint);
 
             mHolder.unlockCanvasAndPost(canvas);
         }
