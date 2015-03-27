@@ -21,6 +21,10 @@ import com.google.android.gms.wearable.Wearable;
 
 import java.util.List;
 
+/**
+ * Demonstrates how to use the Message API and Data API to increment or decrement a number
+ * that is synchronized between a handheld and a wearable.
+ */
 public class CounterActivity extends Activity {
     public static final String COUNTER_INCREMENT_PATH = "/counter/increment";
     public static final String COUNTER_DECREMENT_PATH = "/counter/decrement";

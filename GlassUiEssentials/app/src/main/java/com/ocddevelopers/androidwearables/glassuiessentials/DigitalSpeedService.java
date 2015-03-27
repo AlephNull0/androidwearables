@@ -7,6 +7,10 @@ import android.os.IBinder;
 
 import com.google.android.glass.timeline.LiveCard;
 
+/**
+ * Creates a LiveCard that updates with high-frequency rendering and displays the current speed
+ * in digital form. The speed values are generated for demonstration purposes.
+ */
 public class DigitalSpeedService extends Service {
     private static final String LIVE_CARD_TAG = "DigitalSpeed";
     public static final String ACTION_CHANGE_UNITS =

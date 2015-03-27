@@ -16,6 +16,9 @@ import android.os.Build;
 import android.os.IBinder;
 import android.support.v4.app.NotificationManagerCompat;
 
+/**
+ * Demonstrates how to create a MediaStyle notification on a handheld device.
+ */
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public class MediaStyleService extends Service {
     public static final int NOTIFICATION_ID = 1;
@@ -132,8 +135,8 @@ public class MediaStyleService extends Service {
         intent.setAction(ACTION_STOP);
         PendingIntent pendingIntent = PendingIntent.getService(this, 0, intent, 0);
 
-        // will auto have CATEGORY_TRANSPORT
-        // cannot use notificationcompat, alas
+        // MediaStyle notifications automatically set CATEGORY_TRANSPORT
+        // MediaStyle notifications currently require Android 5.0 and can't use NotificatonCompat
         Notification.Builder mediaNotificationBuilder = new Notification.Builder(this)
                 .setContentTitle("Media Style Notification")
                 .setContentText("Album Name Here")

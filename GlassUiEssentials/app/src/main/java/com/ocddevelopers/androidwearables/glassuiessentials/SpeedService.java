@@ -7,6 +7,9 @@ import android.os.IBinder;
 
 import com.google.android.glass.timeline.LiveCard;
 
+/**
+ * Creates a LiveCard that displays a speedometer that updates with high-frequency rendering.
+ */
 public class SpeedService extends Service {
     private static final String LIVE_CARD_TAG = "SpeedometerCard";
     private LiveCard mLiveCard;

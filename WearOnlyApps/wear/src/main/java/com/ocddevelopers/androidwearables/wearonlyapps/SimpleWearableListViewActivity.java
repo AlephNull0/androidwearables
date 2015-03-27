@@ -10,6 +10,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * Shows how to create a basic WearableListView.
+ */
 public class SimpleWearableListViewActivity extends Activity {
     private String[] mItems;
     private WearableListView mWearableListView;

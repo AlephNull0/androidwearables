@@ -6,7 +6,9 @@ import android.support.v7.app.ActionBarActivity;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.wearable.Wearable;
 
-
+/**
+ * Shows how to connect to GoogleApiClient asynchronously with minimal code (does not handle errors).
+ */
 public class MinimalGoogleApiClientActivity extends ActionBarActivity {
     private GoogleApiClient mGoogleApiClient;
 

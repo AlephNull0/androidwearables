@@ -12,7 +12,7 @@ import java.util.Locale;
 
 /**
  * MediaCommandService uses text to speech to provide feedback when the user presses
- * an action button in the sample notifications.
+ * an action button in a sample notification.
  */
 public class MediaCommandService extends Service implements TextToSpeech.OnInitListener {
     public static final String ACTION_PAUSE = "com.ocd.dev.androidwearables.chapter2.action.PAUSE";

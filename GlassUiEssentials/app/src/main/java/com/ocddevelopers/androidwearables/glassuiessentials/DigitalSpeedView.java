@@ -8,6 +8,9 @@ import android.widget.TextView;
 
 import java.util.Locale;
 
+/**
+ * Displays the current speed as a number.
+ */
 public class DigitalSpeedView extends FrameLayout {
     private static final float KMH_PER_MPH = 1.60934f;
     private TextView mSpeed;

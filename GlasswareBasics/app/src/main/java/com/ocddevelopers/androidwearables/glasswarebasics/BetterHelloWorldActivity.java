@@ -10,6 +10,11 @@ import android.widget.TextView;
 
 import com.google.android.glass.media.Sounds;
 
+/**
+ * Demonstrates how to provide tuggable feedback to indicate that swiping has no effect.
+ * Additionally, plays the DISALLOWED sound when a user taps on the touchpad to indicate that
+ * this gesture also has no effect.
+ */
 public class BetterHelloWorldActivity extends Activity {
 
     @Override

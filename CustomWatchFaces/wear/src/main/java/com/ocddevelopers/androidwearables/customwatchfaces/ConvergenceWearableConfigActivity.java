@@ -8,6 +8,10 @@ import android.widget.CompoundButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.wearable.Wearable;
 
+/**
+ * A wearable configuration activity for the Convergence watch face. Lets users change the value of
+ * continuous sweep.
+ */
 public class ConvergenceWearableConfigActivity extends Activity {
     private GoogleApiClient mGoogleApiClient;
     private CheckBox mContinuousSweep;

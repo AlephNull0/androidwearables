@@ -13,6 +13,9 @@ import com.google.android.glass.timeline.DirectRenderingCallback;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
+/**
+ * Draws and updates the speedometer created by SpeedService.
+ */
 public class SpeedRenderer implements DirectRenderingCallback {
     private static final long FRAME_TIME_MILLIS = 33;
     private static final float ANGLE_ZERO_MPH = -135f;

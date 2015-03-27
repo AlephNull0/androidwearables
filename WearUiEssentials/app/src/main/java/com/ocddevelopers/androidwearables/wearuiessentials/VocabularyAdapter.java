@@ -10,10 +10,9 @@ import android.view.Gravity;
 
 /**
  * Displays a vocabulary word per row. Every row contains three columns with the word's
- * definition, an example sentence, and a list of synonyms.
+ * definition, an example sentence, and an optional list of synonyms.
  */
 public class VocabularyAdapter extends FragmentGridPagerAdapter {
-    private static final int NUMBER_OF_COLUMNS = 3;
     private VocabularyList mVocabularyList;
     private Drawable mBackground;
 
@@ -48,13 +47,6 @@ public class VocabularyAdapter extends FragmentGridPagerAdapter {
 
         return cardFragment;
     }
-
-    /*
-    @Override
-    public Drawable getBackgroundForPage(int row, int column) {
-        return mBackground;
-    }
-    */
 
     @Override
     public Drawable getBackgroundForRow(int row) {

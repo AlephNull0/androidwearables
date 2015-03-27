@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.widget.TextView;
 
+/**
+ * Displays generic motion events for demonstration purposes.
+ */
 public class MotionEventActivity extends Activity {
     private TextView mFingerCount, mAction, mPositionX, mPositionY;
 

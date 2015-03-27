@@ -8,6 +8,10 @@ import com.google.android.gms.wearable.WearableListenerService;
 
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Receives instructions from the handheld configuration activity to increment or decrement the
+ * value of the count and updates the Data API accordingly.
+ */
 public class ConvergenceWearableListenerService extends WearableListenerService {
     private GoogleApiClient mGoogleApiClient;
 

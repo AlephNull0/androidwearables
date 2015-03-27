@@ -8,6 +8,9 @@ import android.os.IBinder;
 
 import com.google.android.glass.timeline.LiveCard;
 
+/**
+ * Shows how to display a camera preview on a LiveCard.
+ */
 public class CameraLiveCardService extends Service {
     private static final String LIVECARD_TAG = "CamCard";
     private LiveCard mLiveCard;

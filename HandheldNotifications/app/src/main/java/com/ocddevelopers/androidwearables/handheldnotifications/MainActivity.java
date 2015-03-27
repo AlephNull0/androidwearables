@@ -19,7 +19,7 @@ import android.view.View;
 import android.widget.RemoteViews;
 
 /**
- * Demonstrates how to create different kinds of notifications for Android devices.
+ * Demonstrates how to create different kinds of notifications for handheld devices.
  */
 public class MainActivity extends ActionBarActivity {
     public static final int NOTIFICATION_ID = 1;

@@ -25,6 +25,13 @@ import android.util.AttributeSet;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+/**
+ * This layout must be inflated with two child views: a CircledImageView with id @+id/circle
+ * and a TextView with id @+id/name (see layout/list_item.xml). This layout represents an
+ * item in a WearableListView and gets notified when it enters or leaves a central position
+ * by the OnCenterProximityListenerInterface and increases or decreases the size of
+ * CircledImageView accordingly.
+ */
 public class WearableListItemLayout extends LinearLayout
         implements WearableListView.OnCenterProximityListener {
 

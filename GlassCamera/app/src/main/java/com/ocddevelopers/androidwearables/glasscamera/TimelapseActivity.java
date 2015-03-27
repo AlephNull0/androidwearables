@@ -21,7 +21,9 @@ import com.google.android.glass.media.Sounds;
 
 import java.io.IOException;
 
-
+/**
+ * Shows how to use the Camera API to record timelapse vi`deos.
+ */
 public class TimelapseActivity extends Activity {
     private static final String TAG = "CA";
     private Camera mCamera;

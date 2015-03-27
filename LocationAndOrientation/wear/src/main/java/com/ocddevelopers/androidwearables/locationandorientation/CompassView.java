@@ -11,6 +11,9 @@ import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.View;
 
+/**
+ * Draws a compass that is rotated to the given azimuth.
+ */
 public class CompassView extends View {
     private Bitmap mCompass;
     private float mAzimuth;

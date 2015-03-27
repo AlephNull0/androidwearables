@@ -18,6 +18,9 @@ import com.google.android.glass.media.Sounds;
 import com.google.android.glass.widget.CardBuilder;
 import com.google.android.glass.widget.Slider;
 
+/**
+ * Demonstrates how to use different types of sliders.
+ */
 public final class SliderActivity extends Activity {
     private static final int NUM_SCROLL_POSITIONS = 5;
     private Handler mHandler;

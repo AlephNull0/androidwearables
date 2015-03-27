@@ -5,6 +5,12 @@ import android.os.Bundle;
 import android.support.wearable.view.WearableListView;
 import android.widget.Toast;
 
+/**
+ * Shows how to create a WearableListView similar to the one used to select the duration
+ * of a timer in Android Wear. Every item in the list contains a blue circle on the left.
+ * When a list item enters the central position, its circle animates to a larger size. When
+ * a list item leaves the central position, its circle animates back to the original size.
+ */
 public class AnimatedListViewActivity extends Activity {
     private String[] mItems;
 

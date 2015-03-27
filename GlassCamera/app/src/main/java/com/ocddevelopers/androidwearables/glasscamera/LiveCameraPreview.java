@@ -7,6 +7,10 @@ import android.view.SurfaceHolder;
 import com.google.android.glass.timeline.DirectRenderingCallback;
 import com.google.android.glass.timeline.LiveCard;
 
+/**
+ * Starts the camera preview when needed and sets appropriate preview parameters when the camera
+ * is used on a LiveCard.
+ */
 public class LiveCameraPreview implements DirectRenderingCallback {
     private static final String TAG = "CAM";
     private SurfaceHolder mHolder;

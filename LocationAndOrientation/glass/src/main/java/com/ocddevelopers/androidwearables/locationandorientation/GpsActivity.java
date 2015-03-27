@@ -18,6 +18,9 @@ import com.google.android.glass.media.Sounds;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * Shows how to obtain location on Glass.
+ */
 public class GpsActivity extends Activity {
     private LocationManager mLocationManager;
     private TextView mLatitudeText, mLongitudeText, mAltitudeText;

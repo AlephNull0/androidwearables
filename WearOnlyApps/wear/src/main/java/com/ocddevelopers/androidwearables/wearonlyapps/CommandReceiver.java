@@ -5,6 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.PowerManager;
 
+/**
+ * When a user presses an action button on the timer notification, it triggers a broadcast
+ * that is handled by CommandReceiver. This class looks at the broadcast's action to determine
+ * what button was pressed and takes an appropriate action.
+ */
 public class CommandReceiver extends BroadcastReceiver {
     private static final String ACTION_TRIGGER_ALARM =
             "com.ocddevelopers.androidwearables.wearonlyapps.action.TRIGGER_ALARM";

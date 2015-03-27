@@ -14,7 +14,9 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.wearable.Wearable;
 
-
+/**
+ * Shows how to establish a connection to GoogleApiClient asynchronously.
+ */
 public class GoogleApiClientActivity extends ActionBarActivity {
     private static final String STATE_RESOLVING_ERROR = "resolving_error";
     private static final int REQUEST_RESOLVE_ERROR = 1001;
@@ -94,7 +96,6 @@ public class GoogleApiClientActivity extends ActionBarActivity {
         public void onConnectionFailed(ConnectionResult connectionResult) {
             if (mResolvingError) {
                 // Already attempting to resolve an error.
-                return;
             } else if (connectionResult.hasResolution()) {
                 try {
                     mResolvingError = true;

@@ -50,16 +50,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ActivityRecognitionActivity"
-                  android:taskAffinity=
-                      "com.ocddevelopers.androidwearables.locationandorientation.Recognition"
-                  android:label="Activity Recognition">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
     </application>
 
 </manifest>

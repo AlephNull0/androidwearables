@@ -6,7 +6,7 @@ import android.widget.TextView;
 
 /**
  * Provides feedback on an action that was triggered. Simply displays the EXTRA_ACTION_FEEDBACK
- * string to a TextView.
+ * string on a TextView.
  */
 public class ActionFeedbackActivity extends ActionBarActivity {
     public static final String EXTRA_ACTION_FEEDBACK = "action_feedback";

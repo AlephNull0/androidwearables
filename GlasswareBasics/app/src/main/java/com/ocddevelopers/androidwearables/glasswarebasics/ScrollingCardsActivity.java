@@ -17,6 +17,9 @@ import com.google.android.glass.widget.CardScrollView;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Demonstrates how to build a list of scrolling cards.
+ */
 public class ScrollingCardsActivity extends Activity {
     private CardScrollView mCardScrollView;
     private List<String> mWords;

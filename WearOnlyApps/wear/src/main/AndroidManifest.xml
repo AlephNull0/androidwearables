@@ -12,7 +12,8 @@
 
         <activity
             android:name=".HelloWearActivity"
-            android:label="Hello Wear">
+            android:label="Hello Wear"
+            android:taskAffinity="com.ocddevelopers.androidwearables.wearonlyapps.HelloTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -21,7 +22,8 @@
 
         <activity
             android:name=".SimpleWearableListViewActivity"
-            android:label="Simple List Demo" >
+            android:label="Simple List Demo"
+            android:taskAffinity="com.ocddevelopers.androidwearables.wearonlyapps.ListTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -30,7 +32,8 @@
 
         <activity
             android:name=".AnimatedListViewActivity"
-            android:label="Animated List Demo">
+            android:label="Animated List Demo"
+            android:taskAffinity="com.ocddevelopers.androidwearables.wearonlyapps.AListTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -39,7 +42,8 @@
 
         <activity
             android:name=".TimerActivity"
-            android:label="Timer Demo" >
+            android:label="Timer Demo"
+            android:taskAffinity="com.ocddevelopers.androidwearables.wearonlyapps.TimerTask">
             <intent-filter>
                 <action android:name="android.intent.action.SET_TIMER" />
                 <category android:name="android.intent.category.DEFAULT" />

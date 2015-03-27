@@ -19,6 +19,9 @@ import android.view.WindowInsets;
 
 import java.util.TimeZone;
 
+/**
+ * Implements a basic watch face. Draws the watch face based on primitive shapes.
+ */
 public class BasicWatchFaceService extends CanvasWatchFaceService {
 
     @Override
@@ -291,8 +294,6 @@ public class BasicWatchFaceService extends CanvasWatchFaceService {
             canvas.drawLine(width - mMajorTickLength, centerY, width, centerY, mMajorTickPaint);
 
             // Draw the hour hand
-            float hrX = (float) Math.sin(hrRot) * mHourHandLength;
-            float hrY = (float) -Math.cos(hrRot) * mHourHandLength;
             canvas.save();
             canvas.rotate((float) Math.toDegrees(hrRot), centerX, centerY);
             canvas.drawRoundRect(centerX - 3f, centerY - mHourHandLength, centerX + 3f, centerY,
@@ -300,8 +301,6 @@ public class BasicWatchFaceService extends CanvasWatchFaceService {
             canvas.restore();
 
             // Draw the minute hand on top of the hour hand
-            float minX = (float) Math.sin(minRot) * mMinuteHandLength;
-            float minY = (float) -Math.cos(minRot) * mMinuteHandLength;
             canvas.save();
             canvas.rotate((float) Math.toDegrees(minRot), centerX, centerY);
             if(mBurnInProtection) {

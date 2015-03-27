@@ -12,12 +12,11 @@ import com.google.android.glass.touchpad.GestureDetector;
 
 import java.util.Locale;
 
-// adapted from https://github.com/googleglass/gdk-timer-sample
+/**
+ * Lets a user select a number by swiping on the touchpad.
+ * adapted from https://github.com/googleglass/gdk-timer-sample
+ */
 public class FingerScrollActivity extends Activity {
-    private static float FLING_VELOCITY_CUTOFF = 3f;
-    private static float DECELERATION_CONSTANT = 0.2f;
-    private static float TIME_LENGTHENING = 12f;
-    private float mReleaseVelocity;
     private static float COUNT_DAMPENER = 100f;
     private GestureDetector mGestureDetector;
     private TextView mDisplacement, mDelta, mVelocity, mCountText;
@@ -40,22 +39,6 @@ public class FingerScrollActivity extends Activity {
 
         mCount = mPrevCount = 0;
         updateCount();
-        /*
-        mInertialScrollAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                float value = (Float) animation.getAnimatedValue();
-
-                if((int)mPrevCount != (int)mCount) {
-                    mAudioManager.playSoundEffect(Sounds.TAP);
-                    mPrevCount = mCount;
-                }
-
-                mCount = value;
-                mCountText.setText("" + (int)mCount);
-            }
-        });
-        */
     }
 
     @Override
@@ -66,8 +49,6 @@ public class FingerScrollActivity extends Activity {
     private GestureDetector.ScrollListener mScrollListener = new GestureDetector.ScrollListener() {
         @Override
         public boolean onScroll(float displacement, float delta, float velocity) {
-            mReleaseVelocity = velocity;
-
             updateText(displacement, delta, velocity);
             mCount += delta*Math.min(1, Math.abs(velocity)) / COUNT_DAMPENER;
             updateCount();

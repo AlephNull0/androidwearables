@@ -5,6 +5,10 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 
+/**
+ * Selects the appropriate image for a watch face element based on whether the watch is in
+ * interactive or ambient mode.
+ */
 public class WatchFaceBitmapHolder {
     public enum WatchState { INTERACTIVE, AMBIENT }
     private int mInteractiveId, mAmbientId, mLowBitAmbientId;

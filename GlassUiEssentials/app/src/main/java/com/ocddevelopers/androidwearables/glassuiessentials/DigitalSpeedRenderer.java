@@ -11,6 +11,9 @@ import com.google.android.glass.timeline.DirectRenderingCallback;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
+/**
+ * Draws and updates the digital speedometer created by DigitalSpeedService.
+ */
 public class DigitalSpeedRenderer implements DirectRenderingCallback {
     private static final long FRAME_TIME_MILLIS = 33;
     private SurfaceHolder mHolder;

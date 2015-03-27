@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
 
+/**
+ * Creates a menu for the LiveCard started from SpeedService.
+ */
 public class SpeedMenuActivity extends Activity {
     @Override
     public void onAttachedToWindow() {

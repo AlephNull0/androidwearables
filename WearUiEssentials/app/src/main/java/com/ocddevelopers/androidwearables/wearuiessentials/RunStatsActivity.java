@@ -10,6 +10,7 @@ import java.util.Locale;
 
 /**
  * Displays basic stats for a person running, including duration, distance, speed, and calories.
+ * The values from the stats are generated since the focus of this example is on the user interface.
  */
 public class RunStatsActivity extends Activity {
     private SimulatedRunStatsReceiver mStatsReceiver;

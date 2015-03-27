@@ -15,9 +15,12 @@ import android.support.v4.app.NotificationManagerCompat;
 
 import java.util.Locale;
 
+/**
+ * Contains helper methods that 1) create/cancel a timer notification or 2) schedule or remove
+ * an alarm that is triggered when the timer goes off.
+ */
 public class TimerUtil {
     private static final int NOTIFICATION_ID = 1;
-    public static final long[] FORCE_TOP_PATTERN = { 0L };
     public static final String PREFS_PREV_START_TIME = "prev_start_time";
     public static final String PREFS_TIMER_DURATION = "timer_duration";
     public static final String PREFS_IS_PAUSED = "is_paused";

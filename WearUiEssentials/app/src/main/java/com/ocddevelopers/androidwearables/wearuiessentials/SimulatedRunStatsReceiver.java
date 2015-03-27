@@ -5,8 +5,8 @@ import android.os.SystemClock;
 
 /**
  * Simulates values for speed, distance, and calories for a person running. In a real app,
- * this data would be calculated based on the handheld's GPS, but we use somewhat arbitrary
- * simulated values for the purposes of this project.
+ * this data would be calculated based on GPS, but we use somewhat arbitrary
+ * simulated values for the purposes of this example.
  */
 public class SimulatedRunStatsReceiver {
     private static final float MILLIS_PER_SECOND = 1000f;

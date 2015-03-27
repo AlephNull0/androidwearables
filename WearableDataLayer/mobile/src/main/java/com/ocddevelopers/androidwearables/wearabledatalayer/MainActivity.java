@@ -22,7 +22,10 @@ import com.google.android.gms.wearable.PutDataMapRequest;
 import com.google.android.gms.wearable.PutDataRequest;
 import com.google.android.gms.wearable.Wearable;
 
-
+/**
+ * Demonstrates how to use the Message API and Data API to increment or decrement a number
+ * that is synchronized between a handheld and a wearable.
+ */
 public class MainActivity extends ActionBarActivity {
     private static final String START_ACTIVITY_PATH = "/start/CounterActivity";
     private static final String START_CONFIRM_ACTIVITY_PATH = "/start_confirm/CounterActivity";
@@ -200,7 +203,6 @@ public class MainActivity extends ActionBarActivity {
         PutDataMapRequest updateCounterDataMapRequest = PutDataMapRequest.create(COUNTER_PATH);
         updateCounterDataMapRequest.getDataMap().putInt(KEY_COUNT, mCount);
         PutDataRequest putDataRequest = updateCounterDataMapRequest.asPutDataRequest();
-
         PendingResult<DataApi.DataItemResult> pendingResult =
                 Wearable.DataApi.putDataItem(mGoogleApiClient, putDataRequest);
         pendingResult.setResultCallback(new ResultCallback<DataApi.DataItemResult>() {

@@ -20,6 +20,9 @@ import com.google.android.glass.widget.CardScrollView;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Demonstrates how to use a variety of CardBuilder layouts.
+ */
 public class CardListActivity extends Activity {
     private CardScrollView mCardScrollView;
     private List<CardBuilder> mCards;

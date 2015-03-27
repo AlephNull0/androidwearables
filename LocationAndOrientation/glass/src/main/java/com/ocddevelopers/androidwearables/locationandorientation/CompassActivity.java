@@ -22,6 +22,9 @@ import com.google.android.glass.media.Sounds;
 
 import java.util.List;
 
+/**
+ * Shows how to display a compass relative to true north.
+ */
 public class CompassActivity extends Activity {
     private static final float TOO_STEEP_PITCH_DEGREES = 70.0f;
     private static final int ARM_DISPLACEMENT_DEGREES = 6;

@@ -17,6 +17,9 @@ import com.google.android.gms.wearable.Wearable;
 
 import java.util.List;
 
+/**
+ * Contains helper methods to read and write the value of continuous sweep from and to the Data API.
+ */
 public class ConvergenceUtil {
     public static final String PATH_CONTINUOUS_SWEEP = "/convergence/sweep";
     public static final String KEY_CONTINUOUS_SWEEP = "sweep";

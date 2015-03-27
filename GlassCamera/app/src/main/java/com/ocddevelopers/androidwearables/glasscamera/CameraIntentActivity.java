@@ -28,6 +28,9 @@ import java.io.File;
 import java.lang.ref.WeakReference;
 
 
+/**
+ * Shows how to take pictures and record videos with the native camera Glassware.
+ */
 public class CameraIntentActivity extends Activity {
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1;
     private static final int CAPTURE_VIDEO_ACTIVITY_REQUEST_CODE = 2;

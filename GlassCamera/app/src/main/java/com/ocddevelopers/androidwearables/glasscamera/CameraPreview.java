@@ -6,6 +6,9 @@ import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+/**
+ * Starts the camera preview when needed and sets appropriate preview parameters.
+ */
 public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback {
     private static final String TAG = "CAM";
     private SurfaceHolder mHolder;

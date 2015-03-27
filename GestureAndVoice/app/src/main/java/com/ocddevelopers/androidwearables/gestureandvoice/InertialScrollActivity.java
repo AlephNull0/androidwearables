@@ -14,7 +14,10 @@ import com.google.android.glass.touchpad.GestureDetector;
 
 import java.util.Locale;
 
-// adapted from https://github.com/googleglass/gdk-timer-sample
+/**
+ * Demonstrates how to use inertial scroll to let a user select a number.
+ * adapted from https://github.com/googleglass/gdk-timer-sample
+ */
 public class InertialScrollActivity extends Activity {
     private static float FLING_VELOCITY_CUTOFF = 3f;
     private static float DECELERATION_CONSTANT = 0.2f;

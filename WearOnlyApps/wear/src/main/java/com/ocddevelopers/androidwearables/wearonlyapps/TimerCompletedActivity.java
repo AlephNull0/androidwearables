@@ -12,7 +12,10 @@ import android.widget.TextView;
 
 import java.util.concurrent.TimeUnit;
 
-
+/**
+ * Indicates that the timer has gone off by playing a short vibration every second until the user
+ * dismisses it.
+ */
 public class TimerCompletedActivity extends Activity {
     public static final String EXTRA_START_TIME = "start_time";
     private static final long VIBRATION_DURATION = 200L;

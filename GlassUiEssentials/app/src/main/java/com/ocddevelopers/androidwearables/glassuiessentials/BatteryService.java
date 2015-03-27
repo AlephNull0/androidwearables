@@ -12,6 +12,9 @@ import android.widget.RemoteViews;
 
 import com.google.android.glass.timeline.LiveCard;
 
+/**
+ * Demonstrates how to create a LiveCard that updates with low-frequency rendering.
+ */
 public class BatteryService extends Service {
     private static final String LIVE_CARD_TAG = "BatteryCard";
     private LiveCard mLiveCard;

@@ -13,6 +13,9 @@ import android.widget.Toast;
 import com.google.android.glass.view.WindowUtils;
 import com.google.android.glass.widget.CardBuilder;
 
+/**
+ * Displays the gestures detected by HeadGestureDetector for demonstration purposes.
+ */
 public class HeadGestureActivity extends Activity {
     private HeadGestureDetector mHeadGestureDetector;
     private CardBuilder mCardBuilder;

@@ -6,6 +6,10 @@ import android.hardware.SensorManager;
 
 import java.util.concurrent.TimeUnit;
 
+
+/**
+ * Utilizes the gyroscopic sensor to detect head nod gestures.
+ */
 public class HeadGestureDetector {
     public interface HeadGestureListener {
         void onNodUp();

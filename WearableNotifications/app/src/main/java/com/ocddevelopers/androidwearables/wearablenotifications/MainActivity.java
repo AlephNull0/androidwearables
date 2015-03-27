@@ -21,7 +21,7 @@ import android.text.style.TextAppearanceSpan;
 import android.view.View;
 
 /**
- * Contains several example notifications that illustrate how to customize notifications
+ * Triggers several example notifications that illustrate how to customize notifications
  * specifically for wearables.
  */
 public class MainActivity extends ActionBarActivity {

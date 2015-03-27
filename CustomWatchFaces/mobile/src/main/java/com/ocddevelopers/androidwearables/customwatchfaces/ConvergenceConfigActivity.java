@@ -16,6 +16,10 @@ import com.google.android.gms.wearable.DataMap;
 import com.google.android.gms.wearable.DataMapItem;
 import com.google.android.gms.wearable.Wearable;
 
+/**
+ * A configuration activity for the Convergence watch face. Lets users change the value of
+ * continuous sweep.
+ */
 public class ConvergenceConfigActivity extends ActionBarActivity {
     public static final String PATH_CONTINUOUS_SWEEP = "/convergence/sweep";
     public static final String KEY_CONTINUOUS_SWEEP = "sweep";

@@ -9,7 +9,10 @@ import android.view.ViewGroup;
 import com.google.android.glass.widget.CardScrollAdapter;
 import com.google.android.glass.widget.CardScrollView;
 
-// taken from https://developers.google.com/glass/develop/gdk/card-scroller
+/**
+ * Displays a view as the only item of a CardScrollView to provide tuggable feedback.
+ * taken from https://developers.google.com/glass/develop/gdk/card-scroller
+ */
 public class TuggableView extends CardScrollView {
 
     private final View mContentView;

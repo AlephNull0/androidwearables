@@ -19,6 +19,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Demonstrates how to send assets using the Data API by sending a picture to a paired watch.
+ */
 public class SendImageActivity extends ActionBarActivity {
     private static final int REQUEST_TAKE_PHOTO = 1;
     private static final String TAKE_IMAGE_PATH = "/image";

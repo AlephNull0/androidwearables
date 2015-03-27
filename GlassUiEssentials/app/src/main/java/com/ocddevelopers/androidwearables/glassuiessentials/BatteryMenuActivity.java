@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
 
+/**
+ * Creates a menu for the LiveCard started from BatteryService.
+ */
 public class BatteryMenuActivity extends Activity {
     @Override
     public void onAttachedToWindow() {

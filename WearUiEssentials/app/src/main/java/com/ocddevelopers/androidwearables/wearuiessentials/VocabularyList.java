@@ -7,6 +7,10 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Encapsulates a list of VocabularyWords and contains the static fromJson method, which parses
+ * a list of words from a JSON string.
+ */
 public class VocabularyList {
     private List<VocabularyWord> mWords;
 

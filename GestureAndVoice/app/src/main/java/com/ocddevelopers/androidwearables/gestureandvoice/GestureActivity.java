@@ -8,6 +8,9 @@ import com.google.android.glass.touchpad.Gesture;
 import com.google.android.glass.touchpad.GestureDetector;
 import com.google.android.glass.widget.CardBuilder;
 
+/**
+ * Displays the gestures captured by GestureDetector for demonstration purposes.
+ */
 public class GestureActivity extends Activity {
     private GestureDetector mGestureDetector;
     private CardBuilder mCardBuilder;

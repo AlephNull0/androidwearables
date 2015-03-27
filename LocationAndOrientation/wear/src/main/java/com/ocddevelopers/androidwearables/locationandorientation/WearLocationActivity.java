@@ -21,6 +21,9 @@ import com.google.android.gms.wearable.Wearable;
 
 import java.util.Locale;
 
+/**
+ * Shows how to obtain location on Android Wear.
+ */
 public class WearLocationActivity extends Activity {
     private static final int UPDATE_INTERVAL_MS = 500;
     private static final int FASTEST_INTERVAL_MS = 500;

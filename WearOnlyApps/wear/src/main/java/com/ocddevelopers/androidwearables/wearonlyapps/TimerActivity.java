@@ -5,7 +5,12 @@ import android.os.Bundle;
 import android.provider.AlarmClock;
 import android.support.wearable.view.WearableListView;
 
-
+/**
+ * TimerActivity is started with the "Set a timer" system-provided voice action. If the voice action
+ * contains a duration (such as "Set a timer for 5 minutes"), then this activity starts the timer
+ * and finishes. Otherwise, this activity prompts the user for a duration before scheduling
+ * the timer.
+ */
 public class TimerActivity extends Activity {
     private static final int[] TIMER_PRESETS_DURATION_SECS = { 5, 10, 20, 30, 40, 50, 60, 120, 180,
             240, 300, 360, 420, 480, 540, 600, 900, 1800, 2700, 3600, 5400 };

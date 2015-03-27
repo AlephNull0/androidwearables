@@ -17,6 +17,9 @@ import com.google.android.glass.media.Sounds;
 
 import java.util.Locale;
 
+/**
+ * Shows how to obtain the current orientation using the rotation vector sensor.
+ */
 public class OrientationActivity extends Activity {
     private static final float TOO_STEEP_PITCH_DEGREES = 70.0f;
     private boolean mLowAccuracy, mTooSteep;

@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
 
+/**
+ * Displays a menu for the LiveCard created in CameraLiveCardService.
+ */
 public class CameraMenuActivity extends Activity {
     @Override
     public void onAttachedToWindow() {

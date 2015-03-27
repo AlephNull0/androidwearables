@@ -8,7 +8,8 @@
 
         <activity
             android:name=".VocabularyActivity"
-            android:label="Vocab Builder" >
+            android:label="Vocab Builder"
+            android:taskAffinity="com.ocddevelopers.androidwearables.wearuiessentials.VocabTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -17,15 +18,18 @@
 
         <activity
             android:name=".ConfirmationDemoActivity"
-            android:label="Confirmation Demo" >
+            android:label="Confirmation Demo"
+            android:taskAffinity="com.ocddevelopers.androidwearables.wearuiessentials.ConfirmationTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name="android.support.wearable.activity.ConfirmationActivity"
             android:theme="@style/NoOverscan"/>
+
         <activity
             android:name=".DelayedConfirmationActivity"
             android:label="Delayed Confirmation Demo" >
@@ -42,9 +46,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".RunStatsNotificationActivity"
-            android:label="Run Stats Notification" >
+            android:label="Run Stats Notification"
+            android:taskAffinity="com.ocddevelopers.androidwearables.wearuiessentials.RunTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

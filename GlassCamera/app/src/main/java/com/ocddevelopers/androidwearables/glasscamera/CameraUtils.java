@@ -11,6 +11,9 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * Contains utility methods for accesing a camera and taking pictures.
+ */
 public class CameraUtils {
     public static Camera getCameraInstance() {
         Camera c = null;

@@ -15,6 +15,9 @@ import com.google.android.glass.widget.CardBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Demonstrates how to use 1) voice prompts, 2) contextual voice commands, and 3) speech recognizer.
+ */
 public class VoiceRecognitionActivity extends Activity {
     private static final int SPEECH_REQUEST = 1;
     private CardBuilder mCardBuilder;
@@ -38,15 +41,6 @@ public class VoiceRecognitionActivity extends Activity {
         mCardBuilder.setText(text);
         setContentView(mCardBuilder.getView());
     }
-
-    /*
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
-        getMenuInflater().inflate(R.menu.voicerec, menu);
-        return true;
-    }
-    */
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

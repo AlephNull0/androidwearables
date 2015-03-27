@@ -26,6 +26,10 @@ import com.google.android.gms.wearable.Wearable;
 
 import java.util.TimeZone;
 
+/**
+ * Implements a watch face called convergence. The watch face's background and clock hands are
+ * images, and the watch face includes both a wearable and a handheld configuration activity.
+ */
 public class ConvergenceWatchFaceService extends CanvasWatchFaceService {
     @Override
     public CanvasWatchFaceService.Engine onCreateEngine() {
@@ -131,7 +135,7 @@ public class ConvergenceWatchFaceService extends CanvasWatchFaceService {
             public void onConnected(Bundle bundle) {
                 initializeContinuousSweep();
                 Wearable.DataApi.addListener(mGoogleApiClient, mDataListener);
-            };
+            }
 
             @Override
             public void onConnectionSuspended(int i) {

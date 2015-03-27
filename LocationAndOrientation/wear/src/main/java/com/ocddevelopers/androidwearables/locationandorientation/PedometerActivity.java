@@ -10,6 +10,9 @@ import android.os.Bundle;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+/**
+ * Displays the number of steps that a user has taken since the device was booted.
+ */
 public class PedometerActivity extends Activity {
     private TextView mStepCountText;
     private SensorManager mSensorManager;

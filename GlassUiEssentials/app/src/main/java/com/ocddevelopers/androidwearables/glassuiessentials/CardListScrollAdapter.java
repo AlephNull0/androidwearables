@@ -8,6 +8,9 @@ import com.google.android.glass.widget.CardScrollAdapter;
 
 import java.util.List;
 
+/**
+ * An adapter used to display a list of CardBuilder views on a CardScrollAdapter.
+ */
 public class CardListScrollAdapter extends CardScrollAdapter {
     private List<CardBuilder> mCards;
 

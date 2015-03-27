@@ -22,6 +22,9 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.wearable.Wearable;
 
+/**
+ * Shows how to display a compass relative to true north.
+ */
 public class CompassActivity extends Activity {
     private static final float TOO_STEEP_PITCH_DEGREES = 70.0f;
     private static final int UPDATE_INTERVAL_MS = 60*1000; // 1 minute

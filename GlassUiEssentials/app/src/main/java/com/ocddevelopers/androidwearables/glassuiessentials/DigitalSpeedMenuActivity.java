@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
 
+/**
+ * Creates a menu for the LiveCard started from DigitalSpeedService.
+ */
 public class DigitalSpeedMenuActivity extends Activity {
     public static final String EXTRA_USE_METRIC = "use_metric";
 

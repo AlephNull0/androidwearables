@@ -22,7 +22,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-
+/**
+ * Shows how to use the Camera API to display a viewfinder and take pictures.
+ */
 public class CameraActivity extends Activity {
     private static final String TAG = "CA";
     private Camera mCamera;

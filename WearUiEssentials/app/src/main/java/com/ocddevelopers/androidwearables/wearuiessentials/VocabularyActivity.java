@@ -3,7 +3,6 @@ package com.ocddevelopers.androidwearables.wearuiessentials;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.wearable.view.GridViewPager;
-import android.widget.TextView;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,7 +16,6 @@ import java.util.Scanner;
  */
 public class VocabularyActivity extends Activity {
     private GridViewPager mGridViewPager;
-    private TextView mTextView;
     private String jsonVocabularyList;
 
     @Override
@@ -42,7 +40,7 @@ public class VocabularyActivity extends Activity {
         }
 
         if(vocabularyList == null) {
-            new RuntimeException("Invalid vocabulary list.");
+            throw new RuntimeException("Invalid vocabulary list.");
         }
 
         mGridViewPager = (GridViewPager)findViewById(R.id.gridview);

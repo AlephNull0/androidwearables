@@ -10,6 +10,10 @@ import com.google.android.gms.wearable.Node;
 import com.google.android.gms.wearable.NodeApi;
 import com.google.android.gms.wearable.Wearable;
 
+/**
+ * Shows how to use the Node API to 1) obtain a remote node, 2) obtain a local node, and
+ * 3) check if a watch is paired to a handheld or vice versa.
+ */
 public class NodeApiActivity extends ActionBarActivity {
     private GoogleApiClient mGoogleApiClient;
     private TextView mConnectionStatus;

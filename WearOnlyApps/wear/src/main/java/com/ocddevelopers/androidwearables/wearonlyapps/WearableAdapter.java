@@ -10,6 +10,9 @@ import android.widget.TextView;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Used by AnimatedListViewActivity to populate a WearableListView.
+ */
 public class WearableAdapter extends WearableListView.Adapter {
     private List<String> mItems;
     private final LayoutInflater mInflater;
