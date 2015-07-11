@@ -41,6 +41,9 @@ public class CounterActivity extends Activity {
 
         mCountText = (TextView) findViewById(R.id.count);
 
+        // initialize to 0. will be overwritten unless no data item has been created.
+        mCountText.setText("0");
+
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addApi(Wearable.API)
                 .addConnectionCallbacks(mConnectionCallbacks)
@@ -94,7 +97,6 @@ public class CounterActivity extends Activity {
         }
     };
 
-
     private void loadRemoteNodeId() {
         Wearable.DataApi.getDataItems(mGoogleApiClient).setResultCallback(new ResultCallback<DataItemBuffer>() {
             @Override
@@ -105,6 +107,8 @@ public class CounterActivity extends Activity {
                         updateCountFromDataItem(dataItem);
                     }
                 }
+
+                dataItems.release();
             }
         });
     }

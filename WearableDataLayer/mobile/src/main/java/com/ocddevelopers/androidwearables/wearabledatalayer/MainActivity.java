@@ -111,7 +111,10 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onResult(DataApi.DataItemResult dataItemResult) {
                 if (dataItemResult.getStatus().isSuccess()) {
-                    loadCountFromDataItem(dataItemResult.getDataItem());
+                    DataItem dataItem = dataItemResult.getDataItem();
+                    if(dataItem != null) {
+                        loadCountFromDataItem(dataItem);
+                    }
                 }
             }
         });
